@@ -12,6 +12,7 @@ public class LoginConfig extends WebMvcConfigurerAdapter {
     public void addInterceptors(InterceptorRegistry registry) {
         InterceptorRegistration interceptorRegistration = registry.addInterceptor(new LoginInterception()).addPathPatterns("/*");
         interceptorRegistration.excludePathPatterns("/index");
+        
         super.addInterceptors(registry);
     }
 }
