@@ -9,8 +9,8 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="format-detection" content="telephone=no">
-<link rel="stylesheet" href="./css/x-admin.css" media="all">
-<link rel="stylesheet" href="css/pag.css" media="all">
+<link rel="stylesheet" th:href="@{/css/x-admin.css}" media="all">
+<link rel="stylesheet" th:href="@{/css/pag.css}" media="all">
 </head>
 <body>
 <div class="x-nav"> <span class="layui-breadcrumb"> <a><cite>首页</cite></a> <a><cite>数据管理</cite></a> <a><cite>预警信息管理</cite></a> </span> <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right"  href="javascript:location.replace(location.href);" title="刷新"><i class="layui-icon" style="line-height:30px">ဂ</i></a> </div>
@@ -32,21 +32,21 @@
   <tbody>
     <tr>
       <td align="center">正常</td>
-      <td align="center"><img src="images/blu.jpg"></td>
+      <td align="center"><img th:src="@{/images/blu.jpg}"></td>
       <td >没有症状</td>
     </tr>
     <tr>
       <td align="center">异常</td>
-      <td align="center"><img src="images/red.jpg"></td>
+      <td align="center"><img th:src="@{/images/red.jpg}"></td>
       <td >需要预警</td>
     </tr>
   </tbody>
 </table>
 </div>
-<script src="./lib/layui/layui.js" charset="utf-8"></script> 
-<script src="./js/x-layui.js" charset="utf-8"></script> 
-<script src="js/jquery2.js" charset="utf-8"></script> 
-<script src="js/js.js" charset="utf-8"></script>
+<script th:src="@{/lib/layui/layui.js}" charset="utf-8"></script> 
+<script th:src="@{/js/x-layui.js}" charset="utf-8"></script> 
+<script th:src="@{/js/jquery2.js}" charset="utf-8"></script> 
+<script th:src="@{/js/js.js}" charset="utf-8"></script>
 <script type="text/javascript">
 layui.use(['laydate','element','laypage','layer'], function(){
                 $ = layui.jquery;

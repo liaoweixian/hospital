@@ -9,9 +9,9 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="format-detection" content="telephone=no">
-<link rel="stylesheet" href="./css/x-admin.css" media="all">
-<link rel="stylesheet" href="css/pag.css" media="all">
-<link rel="stylesheet" href="css/css.css" media="all">
+<link rel="stylesheet" th:href="@{/css/x-admin.css}" media="all">
+<link rel="stylesheet" th:href="@{/css/pag.css}" media="all">
+<link rel="stylesheet" th:href="@{/css/css.css}" media="all">
 </head>
 <body>
 <div class="x-nav"> <span class="layui-breadcrumb"> <a><cite>首页</cite></a> <a><cite>心理诊断测试</cite></a> </span> <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right"  href="javascript:location.replace(location.href);" title="刷新"><i class="layui-icon" style="line-height:30px">ဂ</i></a> </div>
@@ -279,10 +279,10 @@
   </div>
   <span style=" float:right; padding-top:20px;"><button class="btn-green" onClick="window.location.href='test-two.html'">完成</button></span>
 </section>
-<script type="text/javascript" src="js/jquery-1.11.0.min.js"></script> 
-<script type="text/javascript" src="js/js.js"></script> 
-<script src="./lib/layui/layui.js" charset="utf-8"></script> 
-<script src="./js/x-layui.js" charset="utf-8"></script> 
+<script th:src="@{/lib/layui/layui.js}" charset="utf-8"></script>
+<script th:src="@{/js/x-layui.js}" charset="utf-8"></script> 
+<script th:src="@{/js/jquery2.js}" charset="utf-8"></script> 
+<script th:src="@{]js/js.js}" charset="utf-8"></script>
 <script>
             layui.use(['element','laypage','layer','form'], function(){
                 $ = layui.jquery;//jquery

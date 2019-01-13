@@ -9,7 +9,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="format-detection" content="telephone=no">
-<link rel="stylesheet" href="css/stylepc.css" media="all">
+<link rel="stylesheet" th:href="@{/css/stylepc.css}" media="all">
 </head>
 <body>
 <div class="container">
@@ -361,7 +361,7 @@
     </div>
   </div>
 </div>
-<script src="js/jquery-latest.js" charset="utf-8"></script> 
-<script src="js/pc.js" charset="utf-8"></script>
+<script th:src="@{/js/jquery-latest.js}" charset="utf-8"></script> 
+<script th:src="@{/js/pc.js}" charset="utf-8"></script>
 </body>
 </html>

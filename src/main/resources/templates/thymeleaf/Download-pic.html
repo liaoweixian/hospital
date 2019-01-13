@@ -9,8 +9,8 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="format-detection" content="telephone=no">
-<link rel="stylesheet" href="./css/x-admin.css" media="all">
-<link rel="stylesheet" href="css/pag.css" media="all">
+<link rel="stylesheet" th:href="@{/css/x-admin.css}" media="all">
+<link rel="stylesheet" th:href="@{/css/pag.css}" media="all"> 
 
 </head>
 <body>
@@ -40,8 +40,8 @@
     </form>
     <div class="tools">
     <ul class="toolbar">
-      <li onclick="download_picadd('添加信息','download_picadd.html','600','500')"><span><img src="images/t01.png" /></span>添加</li>
-      <li><span><img src="images/t06.png" /></span>查看</li>
+      <li onclick="download_picadd('添加信息','download_picadd.html','600','500')"><span><img th:src="@{/images/t01.png}" /></span>添加</li>
+      <li><span><img th:src="@{/images/t06.png}" /></span>查看</li>
     </ul>
     <span class="x-right" style="line-height:25px">共有数据：88 条</span></xblock>
   </div>
@@ -62,7 +62,7 @@
         <tr>
           <td><input type="checkbox" value="1" name="selected"></td>
           <td width="7%">心理图片</td>
-          <td align="center" width="7%"><img src="images/tupian2.jpg" alt="" width="56" height="56"></td>
+          <td align="center" width="7%"><img th:src="@{/images/tupian2.jpg}" alt="" width="56" height="56"></td>
           <td >2017-07-15</td>
           <td >叙述内容</td>
           <td class="td-status"><button class="sp">已上传</button></td>
@@ -73,7 +73,7 @@
         <tr>
           <td><input type="checkbox" value="1" name="selected"></td>
           <td width="7%">产品图片</td>
-          <td align="center" width="7%"><img src="images/tupian3.jpg" alt="" width="56" height="56"></td>
+          <td align="center" width="7%"><img th:src="@{/images/tupian3.jpg}" alt="" width="56" height="56"></td>
           <td >2017-07-15</td>
           <td >叙述内容</td>
           <td class="td-status"><button class="sp">已上传</button></td>
@@ -84,7 +84,7 @@
         <tr>
           <td><input type="checkbox" value="1" name="selected"></td>
           <td width="7%">公司图片</td>
-          <td align="center" width="7%"><img src="images/tupian4.jpg" alt="" width="56" height="56"></td>
+          <td align="center" width="7%"><img th:src="@{/images/tupian4.jpg}" alt="" width="56" height="56"></td>
           <td >2017-07-15</td>
           <td >叙述内容</td>
           <td class="td-status"><button class="sp">已上传</button></td>
@@ -108,11 +108,10 @@
 <br />
 <br />
 <br />
-<script src="./lib/layui/layui.js" charset="utf-8"></script> 
-<script src="./js/x-layui.js" charset="utf-8"></script> 
-
-<script src="js/jquery2.js" charset="utf-8"></script> 
-<script src="js/js.js" charset="utf-8"></script>
+<script th:src="@{/lib/layui/layui.js}" charset="utf-8"></script> 
+<script th:src="@{/js/x-layui.js}" charset="utf-8"></script> 
+<script th:src="@{/js/jquery2.js}" charset="utf-8"></script> 
+<script th:src="@{/js/js.js}" charset="utf-8"></script>
 <script>
             layui.use(['laydate','element','laypage','layer'], function(){
                 $ = layui.jquery;//jquery
