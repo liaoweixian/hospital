@@ -11,9 +11,8 @@
         <meta name="apple-mobile-web-app-status-bar-style" content="black">
         <meta name="apple-mobile-web-app-capable" content="yes">
         <meta name="format-detection" content="telephone=no">
-        <link rel="stylesheet" href="./css/x-admin.css" media="all">
-        <link rel="stylesheet" href="css/pag.css" media="all"> 
-       
+		<link rel="stylesheet" th:href="@{/css/x-admin.css}" media="all">
+		<link rel="stylesheet" th:href="@{/css/pag.css}" media="all"> 
     </head>
     <body>
         <div class="x-nav">
@@ -39,8 +38,8 @@
             </form>
             <div class="tools">
     <ul class="toolbar">
-      <li><span><img src="images/t03.png" /></span>批量删除</li>
-      <li onclick="new_add('添加用户','new_add.html','600','500')"><span><img src="images/t01.png" /></span>添加</li>
+      <li><span><img th:src="@{/images/t03.png}" /></span>批量删除</li>
+      <li onclick="new_add('添加用户','new_add.html','600','500')"><span><img th:src="@{/images/t01.png}" /></span>添加</li>
     </ul>
     <span class="x-right" style="line-height:25px">共有数据：88 条</span></xblock>
   </div>
@@ -69,7 +68,7 @@
                         <td>心健新闻</td>
                         <td>标题</td>
                         <td align="left">
-                            <img src="images/img1.jpg" alt="" width="56" height="56">
+                            <img th:src="@{/images/img1.jpg}" alt="" width="56" height="56">
                         </td>
                         <td >2017-07-15</td>
                         <td >内容</td>
@@ -96,7 +95,7 @@
                         <td>中心活动</td>
                         <td>活动一</td>
                         <td align="left">
-                            <img src="images/img1.jpg" alt="" width="56" height="56">
+                            <img th:src="@{/images/img1.jpg}" alt="" width="56" height="56">
                         </td>
                         <td >2017-07-15</td>
                         <td >活动简介</td>
@@ -123,7 +122,7 @@
                         <td>心理案例</td>
                         <td>案例一</td>
                         <td align="left">
-                            <img src="images/img1.jpg" alt="" width="56" height="56">
+                            <img th:src="@{/images/img1.jpg}" alt="" width="56" height="56">
                         </td>
                         <td >2017-07-15</td>
                         <td >案例介绍</td>
@@ -153,11 +152,10 @@
 <br />
 <br />
 <br />
-        <script src="./lib/layui/layui.js" charset="utf-8"></script>
-        <script src="./js/x-layui.js" charset="utf-8"></script>
-        
-<script src="js/jquery2.js" charset="utf-8"></script> 
-<script src="js/js.js" charset="utf-8"></script>
+<script th:src="@{/lib/layui/layui.js}" charset="utf-8"></script> 
+<script th:src="@{/js/x-layui.js}" charset="utf-8"></script> 
+<script th:src="@{/js/jquery2.js}" charset="utf-8"></script> 
+<script th:src="@{/js/js.js}" charset="utf-8"></script>
         <script>
             layui.use(['laydate','element','laypage','layer'], function(){
                 $ = layui.jquery;

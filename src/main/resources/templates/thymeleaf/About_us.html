@@ -9,8 +9,8 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="format-detection" content="telephone=no">
-<link rel="stylesheet" href="./css/x-admin.css" media="all">
-<link rel="stylesheet" href="css/pag.css" media="all">
+<link rel="stylesheet" th:href="@{/css/x-admin.css}" media="all">
+<link rel="stylesheet" th:href="@{/css/pag.css}" media="all"> 
 
 </head>
 <body>
@@ -30,8 +30,8 @@
 </form>
 <div class="tools">
     <ul class="toolbar">
-      <li><span><img src="images/t03.png" /></span>批量删除</li>
-      <li onclick="about_us_add('添加用户','about_us_add.html','600','500')"><span><img src="images/t01.png" /></span>添加</li>
+      <li><span><img th:src="@{/images/t03.png}" /></span>批量删除</li>
+      <li onclick="about_us_add('添加用户','about_us_add.html','600','500')"><span><img th:src="@{/images/t01.png}" /></span>添加</li>
     </ul>
     <span class="x-right" style="line-height:25px">共有数据：88 条</span></xblock>
   </div>
@@ -51,7 +51,7 @@
     <tr>
       <td><input type="checkbox" value="1" name="selected"></td>
       <td>中心介绍</td>
-      <td align="center"><img src="images/img1.jpg" width="100" alt=""></td>
+      <td align="center"><img th:src="@{/images/img1.jpg}" width="100" alt=""></td>
       <td > 文字信息 文字信息 文字信息 文字信息 文字信息 文字信息 文字信息 文字信息 文字信息 文字信息 文字信息 文字信息 文字信息 文字信息 文字信息 文字信息 文字信息 文字信息 文字信息 文字信息 文字信息 文字信息 文字信息 </td>
       <td class="td-status"><button class="sp">已显示</button></td>
       <td class="td-manage"><a title="修改" href="javascript:;" onclick="about_us_edit('修改','about_us_edit.html','4','','510')"
@@ -61,7 +61,7 @@
     <tr>
       <td><input type="checkbox" value="2" name="selected"></td>
       <td> 中心资质 </td>
-      <td align="center"><img src="images/img1.jpg" width="100" alt=""></td>
+      <td align="center"><img th:src="@{/images/img1.jpg}" width="100" alt=""></td>
       <td >文字信息 文字信息 文字信息 文字信息 文字信息 文字信息 文字信息 文字信息 文字信息 文字信息 文字信息 文字信息 文字信息 文字信息 文字信息 文字信息 文字信息 文字信息 文字信息 文字信息 文字信息 文字信息 文字信息 </td>
       <td class="td-status"><button class="sp">已显示</button></td>
       <td class="td-manage"><a title="修改" href="javascript:;" onclick="about_us_edit('修改','about_us_edit.html','4','','510')"
@@ -71,7 +71,7 @@
     <tr>
       <td><input type="checkbox" value="3" name="selected"></td>
       <td> 中心文化 </td>
-      <td align="center"><img src="images/img1.jpg" width="100" alt=""></td>
+      <td align="center"><img th:src="@{/images/img1.jpg}" width="100" alt=""></td>
       <td >文字信息 文字信息 文字信息 文字信息 文字信息 文字信息 文字信息 文字信息 文字信息 文字信息 文字信息 文字信息 文字信息 文字信息 文字信息 文字信息 文字信息 文字信息 文字信息 文字信息 文字信息 文字信息 文字信息 </td>
       <td class="td-status"><button class="sp">已显示</button></td>
       <td class="td-manage"><a title="修改" href="javascript:;" onclick="about_us_edit('修改','about_us_edit.html','4','','510')"
@@ -81,7 +81,7 @@
     <tr>
       <td><input type="checkbox" value="4" name="selected"></td>
       <td>团队力量/咨询师介绍</td>
-      <td align="center"><img src="images/t2.jpg" width="101" height="109"></td>
+      <td align="center"><img th:src="@{/images/t2.jpg}" width="101" height="109"></td>
       <td > 咨询师一 </td>
       <td class="td-status"><button class="sp">已显示</button></td>
       <td class="td-manage"><a title="修改" href="javascript:;" onclick="about_us_edit('修改','about_us_edit.html','4','','510')"
@@ -119,10 +119,10 @@
 <br />
 <br />
 <br />
-<script src="./lib/layui/layui.js" charset="utf-8"></script> 
-<script src="./js/x-layui.js" charset="utf-8"></script> 
-<script src="js/jquery2.js" charset="utf-8"></script> 
-<script src="js/js.js" charset="utf-8"></script>
+<script th:src="@{/lib/layui/layui.js}" charset="utf-8"></script> 
+<script th:src="@{/js/x-layui.js}" charset="utf-8"></script> 
+<script th:src="@{/js/jquery2.js}" charset="utf-8"></script> 
+<script th:src="@{/js/js.js}" charset="utf-8"></script>
 <script>
             layui.use(['laydate','element','laypage','layer'], function(){
                 $ = layui.jquery;
