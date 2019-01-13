@@ -3,10 +3,10 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>首页</title>
-<link rel="stylesheet" href="css/style.css" media="all"> 
+<link rel="stylesheet" th:href="@{/css/style.css}" media="all">
 </head>
 
-<body background="images/mainbg.jpg">
+<body th:background="@{/images/mainbg.jpg}">
 		<div class="clearfix" id="contentBox">
   <div id="first" class="buttonBox">
     <button style="color:#666; font-size:20px;">未审核人员</button>

@@ -3,10 +3,10 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>人格障碍诊断</title>
-<link rel="stylesheet" type="text/css" href="css/public.css" />
-<script type="text/javascript" src="js/jquery.min.js"></script>
-<script type="text/javascript" src="js/public.js"></script>
-<script type="text/javascript" src="js/external.js"></script>
+<link rel="stylesheet" type="text/css" th:href="@{/css/public.css}" />
+<script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/public.js}"></script>
+<script type="text/javascript" th:src="@{/js/external.js}"></script>
 
 </head>
 
@@ -14,10 +14,10 @@
 	<!-- 头部 -->
 	<div class="head">
 		<div class="headL">
-			<img class="headLogo" src="images/banner2.png"/>
+			<img class="headLogo" th:src="@{/images/banner2.png}"/>
 		</div>
 		<div class="headR">
-	    <a href="login.html" target="_parent">【退出】</a>
+	    <a th:href="@{/voew/login}" target="_parent">【退出】</a>
 		</div>
 	</div>
     <div class="user">
