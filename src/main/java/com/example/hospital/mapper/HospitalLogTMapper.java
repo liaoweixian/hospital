@@ -1,4 +1,4 @@
-package com.example.hospital.pojo;
+package com.example.hospital.mapper;
 
 import com.example.hospital.pojo.HospitalLogT;
 import java.util.List;
