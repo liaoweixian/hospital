@@ -11,7 +11,7 @@
         <meta name="apple-mobile-web-app-status-bar-style" content="black">
         <meta name="apple-mobile-web-app-capable" content="yes">
         <meta name="format-detection" content="telephone=no">
-        <link rel="stylesheet" href="./css/x-admin.css" media="all">
+        <link rel="stylesheet" th:href="@{/css/x-admin.css}" media="all">
     </head>
     <body>
         <div class="x-nav">
@@ -27,7 +27,7 @@
              <table width="800px" align="center" height="90%" style="margin-top:100px;">
                 <tbody>
                     <tr>
-                        <td width="394" rowspan="2" align="center"><img src="images/wc.png" width="400px" height="400px"></td>
+                        <td width="394" rowspan="2" align="center"><img th:src="@{/images/wc.png}" width="400px" height="400px"></td>
                         <td width="394" height="106" align="left" valign="bottom"><span style="font-size:20px;">症状诊断完成：</span></td>
                     </tr>
                     <tr>
@@ -35,8 +35,10 @@
                     </tr>
                 </tbody>
             </table>
- <script src="./lib/layui/layui.js" charset="utf-8"></script>
-        <script src="./js/x-layui.js" charset="utf-8"></script>
+<script th:src="@{/lib/layui/layui.js}" charset="utf-8"></script>
+<script th:src="@{/js/x-layui.js}" charset="utf-8"></script> 
+<script th:src="@{/js/jquery2.js}" charset="utf-8"></script> 
+<script th:src="@{]js/js.js}" charset="utf-8"></script>
         <script>
             layui.use(['laydate','element','laypage','layer'], function(){
                 $ = layui.jquery;//jquery

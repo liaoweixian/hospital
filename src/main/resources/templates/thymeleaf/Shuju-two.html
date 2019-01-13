@@ -10,7 +10,6 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="format-detection" content="telephone=no">
 <link rel="stylesheet" th:href="@{/css/x-admin.css}" media="all">
-<link rel="stylesheet" th:href="@{/css/pag.css}" media="all">
 </head>
 <body>
 <div class="x-nav"> <span class="layui-breadcrumb"> <a><cite>首页</cite></a> <a><cite>数据备份</cite></a> <a><cite>还原</cite></a> </span> <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right"  th:href="@{javascript:location.replace(location.href);" title="刷新"><i class="layui-icon" style="line-height:30px">ဂ</i></a> </div>
@@ -46,7 +45,8 @@
   </div>
 </div>
 <script th:src="@{/lib/layui/layui.js}" charset="utf-8"></script> 
-<script th:src="@{/js/x-layui.js}" charset="utf-8"></script> 
+<script th:src="@{/js/x-layui.js}" charset="utf-8"></script>
+<script th:src="@{/js/js.js}" charset="utf-8"></script>  
 <script>
             layui.use(['element','layer','form'], function(){
                 $ = layui.jquery;//jquery

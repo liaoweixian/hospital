@@ -12,7 +12,8 @@
         <meta name="apple-mobile-web-app-status-bar-style" content="black">
         <meta name="apple-mobile-web-app-capable" content="yes">
         <meta name="format-detection" content="telephone=no">
-        <link rel="stylesheet" href="./css/x-admin.css" media="all">
+		<link rel="stylesheet" th:href="@{/css/x-admin.css}" media="all">
+		<link rel="stylesheet" th:href="@{/css/pag.css}" media="all"> 
     </head>
     
     <body>
@@ -69,7 +70,7 @@
                     <div class="layui-input-inline">
                       <div class="site-demo-upbar">
                         <button>
-                      <img src="images/sctp.png">
+                      <img th:src="@{/images/sctp.png}">
                     </button>
                       </div>
                     </div>
@@ -77,7 +78,7 @@
                 <div class="layui-form-item">
                     <label  class="layui-form-label">图片
                     </label>
-                    <img id="" width="400" src="images/img1.jpg">
+                    <img id="" width="400" th:src="@{/images/img1.jpg}">
                 </div>
                 <div class="layui-form-item">
                     <label for="desc" class="layui-form-label">
@@ -100,9 +101,9 @@
                 </div>
             </form>
         </div>
-        <script src="./lib/layui/layui.js" charset="utf-8">
+        <script th:src="@{/lib/layui/layui.js}" charset="utf-8">
         </script>
-        <script src="./js/x-layui.js" charset="utf-8">
+        <script th:src="@{/js/x-layui.js}" charset="utf-8">
         </script>
         <script>
             layui.use(['form','layer','upload'], function(){
