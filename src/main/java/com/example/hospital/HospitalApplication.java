@@ -5,7 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-@MapperScan("com.example.mapper") //扫描mapper
+@MapperScan("com.example.hospital.mapper") //扫描mapper
 public class HospitalApplication {
 
     public static void main(String[] args) {
