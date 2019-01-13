@@ -11,8 +11,8 @@
         <meta name="apple-mobile-web-app-status-bar-style" content="black">
         <meta name="apple-mobile-web-app-capable" content="yes">
         <meta name="format-detection" content="telephone=no">
-        <link rel="stylesheet" href="./css/x-admin.css" media="all">
-        <link rel="stylesheet" href="css/pag.css" media="all">        
+        <link rel="stylesheet" th:href="@{/css/x-admin.css}" media="all">
+        <link rel="stylesheet" th:href="@{/css/pag.css}" media="all">        
     </head>
     <body>
         <div class="x-nav">
@@ -49,12 +49,12 @@
             </form>
             <div class="tools">
     <ul class="toolbar">
-      <li><span><img src="images/t03.png" /></span>批量删除</li>
-      <li onclick="user_management_add('添加用户','user_management_add.html','600','500')"><span><img src="images/t01.png" /></span>添加</li>
-      <li><span><img src="images/t10.png" /></span>导入</li>
-      <li><span><img src="images/t09.png" /></span>导出</li>
-      <li><span><img src="images/t07.png" /></span>打印</li>
-      <li><span><img src="images/t08.png" /></span>审核</li>
+      <li><span><img th:src="@{/images/t03.png}" /></span>批量删除</li>
+      <li onclick="user_management_add('添加用户','user_management_add.html','600','500')"><span><img th:src="@{/images/t01.png}" /></span>添加</li>
+      <li><span><img th:src="@{/images/t10.png}" /></span>导入</li>
+      <li><span><img th:src="@{/images/t09.png}" /></span>导出</li>
+      <li><span><img th:src="@{/images/t07.png}" /></span>打印</li>
+      <li><span><img th:src="@{/images/t08.png}" /></span>审核</li>
     </ul>
     <span class="x-right" style="line-height:25px">共有数据：88 条</span></xblock>
   </div>
@@ -459,10 +459,10 @@
 <br />
 <br />
 <br />
-        <script src="./lib/layui/layui.js" charset="utf-8"></script>
-        <script src="./js/x-layui.js" charset="utf-8"></script> 
-<script src="js/jquery2.js" charset="utf-8"></script> 
-<script src="js/js.js" charset="utf-8"></script>
+        <script th:src="@{/lib/layui/layui.js}" charset="utf-8"></script>
+        <script th:src="@{/js/x-layui.js}" charset="utf-8"></script> 
+<script th:src="@{/js/jquery2.js}" charset="utf-8"></script> 
+<script th:src="@{]js/js.js}" charset="utf-8"></script>
         <script>
             layui.use(['laydate','element','laypage','layer'], function(){
                 $ = layui.jquery;//jquery
