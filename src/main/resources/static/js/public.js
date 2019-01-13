@@ -10,6 +10,7 @@
 //  });
  // head.html 的弹出框 JS  end
 
+var host = "/hospital"
 
 // left.html 的切换节点  JS
 $(function(){

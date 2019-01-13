@@ -7,6 +7,7 @@
 <script language="JavaScript" th:src="@{/js/jquery2.js}"></script>
 <script th:src="@{/js/cloud.js}" type="text/javascript"></script>
 <script language="javascript" th:src="@{/js/js.js}"></script>
+<script language="javascript" th:src="@{/js/public.js}"></script>
 </head>
 
 <body style="background-color:#1c77ac; background-image: background-repeat:no-repeat; background-position:center top; overflow:hidden;" th:background="@{/images/light.png}">
@@ -21,22 +22,50 @@
 </div>
 <div class="loginbody"> <span class="systemlogo"></span>
   <div class="loginbox">
-  	<form th:action="@{/user/land}">
+  	<form th:action="@{/user/land}" id="login_form" method="post">
     <ul>
       <li>
-        <input name="" type="text" class="loginuser" value="admin" onclick="JavaScript:this.value=''"/>
+        <input name="userLoginName" type="text" class="loginuser"  placeholder="请输入用户名" />
       </li>
       <li>
-        <input name="" type="text" class="loginpwd" value="密码" onclick="JavaScript:this.value=''"/>
+        <input name="userPassword" type="text" class="loginpwd" placeholder="请输入密码" />
       </li>
       <li>
-        <input name="" type="submit" class="loginbtn" value="登录"/>
-        <input name="" type="button" class="loginbtn" value="注册" onclick="javascript:window.location='/hospital/view/register'" />
+        <input type="button" id="login" class="loginbtn" value="登录"/>
+        <input type="button" class="loginbtn" value="注册" onclick="javascript:window.location=host+'/view/register'" />
       </li>
     </ul>
     </form>
   </div>
 </div>
 <div class="loginbm">版权所有： 阳光心健 © Copyright 2014 - 2015.</div>
+<script >
+ $(document).ready(function()
+ {
+	$("#login").click(function(){
+		var user_loging_name = $("input[name=userLoginName]").val();
+		var user_password = $("input[name=userPassword]").val();
+		if ( user_loging_name == '' || typeof(user_loging_name) == undefined ) 
+		{
+			alert("用户名不能为空");
+			return false;
+		}
+		if ( user_password == '' || typeof(user_password) == undefined ) 
+		{
+			alert("请输入密码");
+			return false;
+		}
+		var url = host+"/user/land"
+		var params = $("#login_form").serialize()
+		$.post(url,params,function(params){
+			if ( params.status == 1 ) {
+				window.location.href = host+"/view/index";
+			} else {
+				alert("登录失败，请检查用户名或密码！");
+			}
+		},'json');
+	});
+ });
+</script>
 </body>
 </html>

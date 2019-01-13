@@ -24,9 +24,10 @@ public class HospitalUserServiceImpl implements HospitalUserService {
 	@Override
 	public int insert(HospitalUserT record) {
 		//判断用户是否已经被使用过
-		String userName = record.getUserName();
-		HospitalUserT user = hospitalUserTMapper.selectByUserName(userName);
-		if(user == null) {			
+		String userLoginName = record.getUserLoginName();
+		HospitalUserT user = hospitalUserTMapper.selectByUserName(userLoginName);
+		if(user == null) {
+			record.setDataState(new Byte("1"));
 			return hospitalUserTMapper.insert(record);
 		}
 		return 0;
@@ -56,6 +57,20 @@ public class HospitalUserServiceImpl implements HospitalUserService {
 	@Override
 	public HospitalUserT selectByUserName(String userName) {
 		return hospitalUserTMapper.selectByUserName(userName);
+	}
+
+	@Override
+	public HospitalUserT userLand(HospitalUserT record) {
+		HospitalUserT user = hospitalUserTMapper.selectByUserName(record.getUserLoginName());
+		if(user != null) {
+			if(user.getUserPassword().equals(record.getUserPassword())) {
+				return user;
+			}else {
+				return null;
+			}
+		}else {
+			return null;
+		}
 	}
 
 }

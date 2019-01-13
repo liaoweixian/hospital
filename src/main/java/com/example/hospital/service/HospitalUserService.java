@@ -18,4 +18,6 @@ public interface HospitalUserService {
     int updateByPrimaryKey(HospitalUserT record);
     
     HospitalUserT selectByUserName(String userName);
+    
+    HospitalUserT userLand(HospitalUserT record);
 }

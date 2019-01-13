@@ -8,20 +8,24 @@
 <script th:src="@{/js/cloud.js}" type="text/javascript"></script>
 <script language="javascript" th:src="@{/js/js.js}"></script>
 <script>
-	$(document).ready(
-        function checkUserName(){
-        	var userName = $("input [name='user_login_name']").val();
-        	$.ajax({
-       		  type: "GET",
-       		  url: "/user/checkName/"+userName,
-       		  success: function(data){
-       		    if(data == true){
-       		    	alert("该用户名已存在");
-       		    }
-       		  }
-        	});
-        }
-    );
+function checkUserName(){
+	var userName = $("input[name='userLoginName']").val();
+	var result = false;
+	$.ajax({
+		  type: "GET",
+		  async: false,
+		  url: "/hospital/user/checkName/"+userName,
+		  success: function(data){
+			  if(data == true){
+				  $("#checkName").css("color","red").text("已被使用");
+			  }else{
+				  $("#checkName").css("color","green").text("可以使用");
+				  result = true;
+			  }
+		  }
+	});
+	return result;
+}
 </script>
 </head>
 
@@ -37,26 +41,28 @@
 </div>
 <div class="loginbody"> <!-- <span class="systemlogo"></span> -->
   <div class="loginbox">
-  	<form th:action="@{/user/register}" method="post">
+  	<form th:action="@{/user/register}" method="post" onsubmit="return checkUserName()">
     <ul>
       <li>
-        <input name="user_login_name" type="text" class="loginuser" value="shengjingbin" onblur="checkUserName()"/>
+        <input name="userLoginName" type="text" class="loginuser" value="shengjingbin" onchange="checkUserName()" />
+        <span id="checkName" style="color: red"></span>
       </li>
       <li>
-        <input name="user_password" type="password" class="loginpwd" value="123456" />
+        <input name="userPassword" type="password" class="loginpwd" value="123456" />
       </li>
       <li>
-        <input type="password" class="loginpwd" value="123456" />
+        <input  type="password" class="loginpwd" value="123456" />
       </li>
       <li>
-        <input name="user_name" type="text" class="loginuser" value="神经病" />
+        <input name="userName" type="text" class="loginuser" value="神经病" />
       </li>
       <li>
-        <input name="user_sex" type="radio" value="男" checked="checked"/>男
-        <input name="user_sex" type="radio" value="女" />女
+        <input name="userSex" type="radio" value="1" checked="checked"/>男
+        <input name="userSex" type="radio" value="2" />女
       </li>
       <li>
-        <input name="user_idcard" type="text" class="loginuser" value="4315689556598" />
+      
+        <input name="userIdcard" type="text" class="loginuser" value="4315689556598" />
       </li>
       <li>
         <input type="submit" class="loginbtn" value="注册" />
