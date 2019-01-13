@@ -9,8 +9,8 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="format-detection" content="telephone=no">
-<link rel="stylesheet" href="./css/x-admin.css" media="all">
-<link rel="stylesheet" href="css/pag.css" media="all">
+<link rel="stylesheet" th:href="@{/css/x-admin.css}" media="all">
+<link rel="stylesheet" th:href="@{/css/pag.css}" media="all">
 
 </head>
 <body>
@@ -43,10 +43,10 @@
   
   <div class="tools">
     <ul class="toolbar">
-      <li><span><img src="images/t03.png" /></span>批量删除</li>
-      <li onclick="user_management_add('添加用户','Dangan-add.html','1000','600')"><span><img src="images/t01.png" /></span>添加</li>
-      <li onclick="user_management_edit('用户编辑','Dangan-edit.html','600','500')"><span><img src="images/t02.png" /></span>编辑</li>
-      <li onclick="user_management_show('用户查看','Dangan-look.html','600','500')"><span><img src="images/t06.png" /></span>查看</li>
+      <li><span><img th:src="@{/images/t03.png}" /></span>批量删除</li>
+      <li onclick="user_management_add('添加用户','Dangan-add.html','1000','600')"><span><img th:src="@{/images/t01.png}" /></span>添加</li>
+      <li onclick="user_management_edit('用户编辑','Dangan-edit.html','600','500')"><span><img th:src="@{/images/t02.png}" /></span>编辑</li>
+      <li onclick="user_management_show('用户查看','Dangan-look.html','600','500')"><span><img th:src="@{/images/t06.png}" /></span>查看</li>
     </ul>
     <span class="x-right" style="line-height:25px">共有数据：88 条</span></xblock>
   </div>
@@ -75,7 +75,7 @@
         <td > 初中</td>
         <td> 佛教</td>
         <td>15812345678</td>
-        <td><a href="test.html"><button class="sp">心理诊断</button></a></td>
+        <td><a th:href="@{/test.html}"><button class="sp">心理诊断</button></a></td>
       </tr>
       <tr>
         <td><input type="checkbox" value="2" name="selected"></td>
@@ -86,7 +86,7 @@
         <td >小学</td>
         <td>伊斯兰教</td>
         <td >15856123650</td>
-        <td><a href="test.html"> <button class="sp">心理诊断</button></a></td>
+        <td><a th:href="@{/test.html}"> <button class="sp">心理诊断</button></a></td>
       </tr>
       <tr>
         <td><input type="checkbox" value="3" name="selected"></td>
@@ -97,7 +97,7 @@
         <td > 初中</td>
         <td>无</td>
         <td >15856123650</td>
-        <td><a href="test.html"><button class="sp">心理诊断</button></a></td>
+        <td><a th:href="@{/test.html}"><button class="sp">心理诊断</button></a></td>
       </tr>
       <tr>
         <td><input type="checkbox" value="4" name="selected"></td>
@@ -108,7 +108,7 @@
         <td > 高中</td>
         <td>无</td>
         <td >15856123650</td>
-        <td><a href="test.html"><button class="sp">心理诊断</button></a></td>
+        <td><a th:href="@{/test.html}"><button class="sp">心理诊断</button></a></td>
       </tr>
       <tr>
         <td><input type="checkbox" value="5" name="selected"></td>
@@ -119,7 +119,7 @@
         <td > 高中</td>
         <td> 无</td>
         <td >15856123650</td>
-        <td><a href="test.html"><button class="sp">心理诊断</button></a></td>
+        <td><a th:href="@{/test.html}"><button class="sp">心理诊断</button></a></td>
       </tr>
       <tr>
         <td><input type="checkbox" value="6" name="selected"></td>
@@ -130,7 +130,7 @@
         <td > 高中</td>
         <td> 无</td>
         <td >15856123650</td>
-        <td><a href="test.html"><button class="sp">心理诊断</button></a></td>
+        <td><a th:href="@{/test.html}"><button class="sp">心理诊断</button></a></td>
       </tr>
       <tr>
         <td><input type="checkbox" value="7" name="selected"></td>
@@ -141,7 +141,7 @@
         <td >大专</td>
         <td> 无</td>
         <td >15856123650</td>
-        <td><a href="test.html"><button class="sp">心理诊断</button></a></td>
+        <td><a th:href="@{/test.html}"><button class="sp">心理诊断</button></a></td>
       </tr>
       <tr>
         <td><input type="checkbox" value="8" name="selected"></td>
@@ -152,7 +152,7 @@
         <td >大专</td>
         <td> 无</td>
         <td >15856123650</td>
-        <td><a href="test.html"><button class="sp">心理诊断</button></a></td>
+        <td><a th:href="@{/test.html}"><button class="sp">心理诊断</button></a></td>
       </tr>
       <tr>
         <td><input type="checkbox" value="9" name="selected"></td>
@@ -163,7 +163,7 @@
         <td > 初中</td>
         <td> 无</td>
         <td >15856123650</td>
-        <td><a href="test.html"><button class="sp">心理诊断</button></a></td>
+        <td><a th:href="@{/test.html}"><button class="sp">心理诊断</button></a></td>
       </tr>
       <tr>
         <td><input type="checkbox" value="10" name="selected"></td>
@@ -174,7 +174,7 @@
         <td > 高中</td>
         <td> 无</td>
         <td >15856123650</td>
-        <td><a href="test.html"><button class="sp">心理诊断</button></a></td>
+        <td><a th:href="@{/test.html}"><button class="sp">心理诊断</button></a></td>
       </tr>
     </tbody>
   </table>
@@ -187,10 +187,10 @@
 <br />
 <br />
 <br />
-<script src="./lib/layui/layui.js" charset="utf-8"></script> 
-<script src="./js/x-layui.js" charset="utf-8"></script> 
-<script src="js/jquery2.js" charset="utf-8"></script> 
-<script src="js/js.js" charset="utf-8"></script>
+<script th:src="@{/lib/layui/layui.js}" charset="utf-8"></script> 
+<script th:src="@{/js/x-layui.js}" charset="utf-8"></script> 
+<script th:src="@{/js/jquery2.js}" charset="utf-8"></script> 
+<script th:src="@{/js/js.js}" charset="utf-8"></script>
 <script>
             layui.use(['laydate','element','laypage','layer'], function(){
                 $ = layui.jquery;
