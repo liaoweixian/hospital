@@ -11,5 +11,11 @@ public class HospitalUserController {
 	public String userRegister() {
 		System.out.println(666);
 		return "index";
-	} 
+	}
+	
+	@RequestMapping("/land")
+	public String userLand() {
+		System.out.println(666);
+		return "index";
+	}
 }
