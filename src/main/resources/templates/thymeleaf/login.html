@@ -9,7 +9,7 @@
 <script language="javascript" th:src="@{/js/js.js}"></script>
 </head>
 
-<body style="background-color:#1c77ac; background-image: url(@{/images/light.png}) background-repeat:no-repeat; background-position:center top; overflow:hidden;">
+<body style="background-color:#1c77ac; background-image: background-repeat:no-repeat; background-position:center top; overflow:hidden;" th:background="@{/images/light.png}">
 <div id="mainBody">
   <div id="cloud1" class="cloud"></div>
   <div id="cloud2" class="cloud"></div>
@@ -21,6 +21,7 @@
 </div>
 <div class="loginbody"> <span class="systemlogo"></span>
   <div class="loginbox">
+  	<form th:action="@{/user/land}">
     <ul>
       <li>
         <input name="" type="text" class="loginuser" value="admin" onclick="JavaScript:this.value=''"/>
@@ -29,12 +30,11 @@
         <input name="" type="text" class="loginpwd" value="密码" onclick="JavaScript:this.value=''"/>
       </li>
       <li>
-        <input name="" type="text" class="loginy" placeholder="输入验证码"/><label><img th:src="@{/images/images.jpg}" /></label>
-      </li>
-      <li>
-        <input name="" type="button" class="loginbtn" value="登录"  onclick="javascript:window.location='index.html'"  />
+        <input name="" type="submit" class="loginbtn" value="登录"/>
+        <input name="" type="button" class="loginbtn" value="注册" onclick="javascript:window.location='/hospital/view/register'" />
       </li>
     </ul>
+    </form>
   </div>
 </div>
 <div class="loginbm">版权所有： 阳光心健 © Copyright 2014 - 2015.</div>
