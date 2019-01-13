@@ -1,22 +1,18 @@
 package com.example.hospital.interceptor;
 
 import org.springframework.web.servlet.HandlerInterceptor;
-import org.springframework.web.servlet.ModelAndView;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 public class LoginInterception implements HandlerInterceptor {
-    @Override
+   /* @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        /*String name = request.getParameter("name");
+        String name = request.getParameter("name");
         System.out.println("----111111-----");
         if(name == null){
             response.sendRedirect("/index");
             return true;
         }else {
             return true;
-        }*/
+        }
         return true;
     }
 
@@ -28,5 +24,5 @@ public class LoginInterception implements HandlerInterceptor {
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
 
-    }
+    }*/
 }
