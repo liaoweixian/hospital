@@ -71,6 +71,14 @@
     from hospital_user_t
     where id = #{id,jdbcType=INTEGER}
   </select>
+  
+  <select id="selectByUserName" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select id, user_login_name, user_password, user_name, user_sex, user_idcard, user_roleid, 
+    user_last_login_time, creat_time, last_modify_time, data_state
+    from hospital_user_t
+    where user_name = #{userName,jdbcType=VARCHAR}
+  </select>
+  
   <select id="selectAll" resultMap="BaseResultMap" >
     <!--
       WARNING - @mbggenerated

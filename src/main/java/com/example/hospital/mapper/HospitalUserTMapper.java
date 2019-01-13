@@ -43,4 +43,10 @@ public interface HospitalUserTMapper {
      * @mbggenerated
      */
     int updateByPrimaryKey(HospitalUserT record);
+    
+    /**
+     * 根据用户名称查询用户信息
+     * @return
+     */
+    HospitalUserT selectByUserName(String userName);
 }
