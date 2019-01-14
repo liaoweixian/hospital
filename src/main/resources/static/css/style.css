@@ -124,10 +124,10 @@ h2 {
 	margin-top: 75px;
 }
 .loginbox {
-	width: 692px;
-	height: 336px;
+	width: 70%;
+	height: 80%;
 	background: url(../images/logininfo.png) no-repeat;
-	margin-top: 30px;
+	margin-top: 15px;
 }
 .loginbox ul {
 	margin-top: 88px;
@@ -152,22 +152,24 @@ h2 {
 	margin-right: 5px;
 }
 .loginuser {
-	width: 299px;
-	height: 48px;
+	width: 220px;
+	height: 30px;
 	background: url(../images/loginuser.png) no-repeat;
+	background-size:240px 30px;
 	border: none;
-	line-height: 48px;
-	padding-left: 44px;
+	line-height: 30px;
+	padding-left: 20px;
 	font-size: 14px;
 	font-weight: bold;
 }
 .loginpwd {
-	width: 299px;
-	height: 48px;
-	background: url(../images/loginpassword.png) no-repeat;
+	width: 220px;
+	height: 30px;
+	background: url(../images/loginuser.png) no-repeat;
+	background-size:240px 30px;
 	border: none;
-	line-height: 48px;
-	padding-left: 44px;
+	line-height: 30px;
+	padding-left: 20px;
 	font-size: 14px;
 	font-weight: bold;
 }
@@ -181,6 +183,7 @@ h2 {
 	cursor: pointer;
 	line-height: 35px;
 	margin-left: 0px;
+	
 }
 .loginy {
 	width: 156px;
