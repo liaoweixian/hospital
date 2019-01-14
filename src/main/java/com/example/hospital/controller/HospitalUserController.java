@@ -63,5 +63,13 @@ public class HospitalUserController {
 		}
 		return resposeStatus;
 	}
+	@RequestMapping
+	    public HospitalUserT addStudent(HospitalUserT user, BindingResult bindingResult){
+	        if(bindingResult.hasErrors()){
+	             return null;
+	        }
+	        user.setUserLoginName(user.getUserName());
 	
+			return user;
+	    }
 }

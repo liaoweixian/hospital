@@ -27,6 +27,10 @@ public class UserController {
 		return view;
 	}
 	
-
-
+//	@GetMapping("add")
+//	public void addUser() {
+//		HospitalUserT record = new HospitalUserT();
+//		int adduser = hospitalUserServiceImpl.insert(record);
+//		adduser.
+//	}
 }
