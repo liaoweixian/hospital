@@ -41,9 +41,9 @@ public class HospitalUserServiceImpl implements HospitalUserService {
 
 	@Override
 	public List<HospitalUserT> selectAll() {
-		// TODO Auto-generated method stub
-		return null;
+		return hospitalUserTMapper.selectAll();
 	}
+	
 
 	@Override
 	public int updateByPrimaryKey(HospitalUserT record) {

@@ -49,4 +49,6 @@ public interface HospitalUserTMapper {
      * @return
      */
     HospitalUserT selectByUserName(String userName);
+
+    
 }

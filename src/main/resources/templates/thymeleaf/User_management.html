@@ -34,13 +34,6 @@
                     <div class="layui-input-inline" style="width:100px">
                       <input type="text" name="name"  placeholder="姓名" autocomplete="off" class="layui-input">
                     </div>
-                    <label class="layui-form-label">被测时间</label>
-                    <div class="layui-input-inline" style="width:150px">
-                      <input type="text" name="name"  placeholder="被测时间" autocomplete="off" class="layui-input">
-                    </div>
-                    <div class="layui-input-inline" style="width:200px">
-                      <input type="text" name="link"  placeholder="搜索" autocomplete="off" class="layui-input">
-                    </div>
                     <div class="layui-input-inline" style="width:80px">
                         <button class="layui-btn"  lay-submit="" lay-filter="*">搜索</button>
                     </div>
@@ -51,10 +44,6 @@
     <ul class="toolbar">
       <li><span><img th:src="@{/images/t03.png}" /></span>批量删除</li>
       <li onclick="user_management_add('添加用户','user_management_add.html','600','500')"><span><img th:src="@{/images/t01.png}" /></span>添加</li>
-      <li><span><img th:src="@{/images/t10.png}" /></span>导入</li>
-      <li><span><img th:src="@{/images/t09.png}" /></span>导出</li>
-      <li><span><img th:src="@{/images/t07.png}" /></span>打印</li>
-      <li><span><img th:src="@{/images/t08.png}" /></span>审核</li>
     </ul>
     <span class="x-right" style="line-height:25px">共有数据：88 条</span></xblock>
   </div>
@@ -65,367 +54,44 @@
                             <input onclick="selectAll()" type="checkbox"   name="controlAll" style="controlAll" id="controlAll">
                         </th>
                         <th>
-                            ID
-                        </th>
+                            ID</th>
                         <th>
-                            用户名
-                        </th>
+                            用户名</th>
                         <th>
                             密码</th>
+                        <th>
+                            名字</th>
                         <th>
                             用户角色</th>
                         <th>
                             性别</th>
                         <th>
-                            注册时间
-                        </th>
+                        	身份证号</th>
                         <th>
-                            状态
-                        </th>
+                            状态</th>
                         <th>
-                            操作
-                        </th>
+                            操作</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
+                    <tr th:each="user : ${userList}">
                         <td>
                             <input type="checkbox" value="1" name="selected">
                         </td>
-                        <td>
+                        <td th:text="${user.id}">
                             1
                         </td>
-                        <td><u style="cursor:pointer" onclick="user_management_show('宋加加','user_management_show.html','10001','360','400')">求大神</u></td>
-                        <td >
+                        <td th:text="${user.userLoginName}"><u style="cursor:pointer" onclick="user_management_show('宋加加','user_management_show.html','10001','360','400')">求大神</u></td>
+                        <td th:text="${user.userPassword}">
                         123456</td>
+                        <td th:text="${user.userName}">
+                            张三</td>
                         <td >
                             用户</td>
-                        <td >
+                        <td th:text="${user.userSex}">
                             男</td>
-                        <td>
+                        <td th:text="${user.userIdcard}">
                             2015-07-13 13:13:32
-                        </td>
-                        <td class="td-status">
-                            <button class="sp">已启用</button>
-                        </td>
-                        <td class="td-manage">
-                            <a style="text-decoration:none" onclick="member_stop(this,'10001')" href="javascript:;" title="停用">
-                                <i class="layui-icon">&#xe601;</i>
-                            </a>
-                            <a title="编辑" href="javascript:;" onclick="user_management_edit('编辑','user_management_edit.html','4','','510')"
-                            class="ml-5" style="text-decoration:none">
-                                <i class="layui-icon">&#xe642;</i>
-                            </a>
-                            <a style="text-decoration:none"  onclick="user_management_password('修改密码','user_management_password.html','10001','600','400')"
-                            href="javascript:;" title="修改密码">
-                                <i class="layui-icon">&#xe631;</i>
-                            </a>
-                            <a title="删除" href="javascript:;" onclick="member_del(this,'1')" 
-                            style="text-decoration:none">
-                                <i class="layui-icon">&#xe640;</i>
-                            </a>
-                        </td>
-                    </tr>
-                    
-                    <tr>
-                        <td>
-                            <input type="checkbox" value="2" name="selected">
-                        </td>
-                        <td>
-                            2</td>
-                        <td><u style="cursor:pointer" onclick="user_management_show('宋加加','user_management_show.html','10001','360','400')">张三</u></td>
-                        <td >123456</td>
-                        <td >
-                            用户</td>
-                        <td >男</td>
-                        <td>2015-07-15 11:11:42</td>
-                        <td class="td-status">
-                            <button class="sp">已启用</button>
-                        </td>
-                        <td class="td-manage">
-                            <a style="text-decoration:none" onclick="member_stop(this,'10001')" href="javascript:;" title="停用">
-                                <i class="layui-icon">&#xe601;</i>
-                            </a>
-                            <a title="编辑" href="javascript:;" onclick="user_management_edit('编辑','user_management_edit.html','4','','510')"
-                            class="ml-5" style="text-decoration:none">
-                                <i class="layui-icon">&#xe642;</i>
-                            </a>
-                            <a style="text-decoration:none"  onclick="user_management_password('修改密码','user_management_password.html','10001','600','400')"
-                            href="javascript:;" title="修改密码">
-                                <i class="layui-icon">&#xe631;</i>
-                            </a>
-                            <a title="删除" href="javascript:;" onclick="member_del(this,'1')" 
-                            style="text-decoration:none">
-                                <i class="layui-icon">&#xe640;</i>
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <input type="checkbox" value="3" name="selected">
-                        </td>
-                        <td>
-                            3</td>
-                        <td><u style="cursor:pointer" onclick="user_management_show('宋加加','user_management_show.html','10001','360','400')">李四</u></td>
-                        <td >123456</td>
-                        <td >
-                            用户</td>
-                        <td >
-                            男</td>
-                        <td>2016-09-23 21:12:34</td>
-                        <td class="td-status">
-                            <button class="sp">已启用</button>
-                        </td>
-                        <td class="td-manage">
-                            <a style="text-decoration:none" onclick="member_stop(this,'10001')" href="javascript:;" title="停用">
-                                <i class="layui-icon">&#xe601;</i>
-                            </a>
-                            <a title="编辑" href="javascript:;" onclick="user_management_edit('编辑','user_management_edit.html','4','','510')"
-                            class="ml-5" style="text-decoration:none">
-                                <i class="layui-icon">&#xe642;</i>
-                            </a>
-                            <a style="text-decoration:none"  onclick="user_management_password('修改密码','user_management_password.html','10001','600','400')"
-                            href="javascript:;" title="修改密码">
-                                <i class="layui-icon">&#xe631;</i>
-                            </a>
-                            <a title="删除" href="javascript:;" onclick="member_del(this,'1')" 
-                            style="text-decoration:none">
-                                <i class="layui-icon">&#xe640;</i>
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <input type="checkbox" value="4" name="selected">
-                        </td>
-                        <td>
-                            4</td>
-                        <td><u style="cursor:pointer" onclick="user_management_show('宋加加','user_management_show.html','10001','360','400')">丽丽</u></td>
-                        <td >123456</td>
-                        <td >
-                            用户</td>
-                        <td >
-                            女</td>
-                        <td>2017-07-15 11:11:42</td>
-                        <td class="td-status">
-                            <button class="sp">已启用</button>
-                        </td>
-                        <td class="td-manage">
-                            <a style="text-decoration:none" onclick="member_stop(this,'10001')" href="javascript:;" title="停用">
-                                <i class="layui-icon">&#xe601;</i>
-                            </a>
-                            <a title="编辑" href="javascript:;" onclick="user_management_edit('编辑','user_management_edit.html','4','','510')"
-                            class="ml-5" style="text-decoration:none">
-                                <i class="layui-icon">&#xe642;</i>
-                            </a>
-                            <a style="text-decoration:none"  onclick="user_management_password('修改密码','user_management_password.html','10001','600','400')"
-                            href="javascript:;" title="修改密码">
-                                <i class="layui-icon">&#xe631;</i>
-                            </a>
-                            <a title="删除" href="javascript:;" onclick="member_del(this,'1')" 
-                            style="text-decoration:none">
-                                <i class="layui-icon">&#xe640;</i>
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <input type="checkbox" value="5" name="selected">
-                        </td>
-                        <td>5</td>
-                        <td><u style="cursor:pointer" onclick="user_management_show('宋加加','user_management_show.html','10001','360','400')">王五</u></td>
-                        <td >
-                        123456</td>
-                        <td >
-                            管理员</td>
-                        <td >
-                            男</td>
-                        <td>
-                            2017-07-16 11:34:54</td>
-                        <td class="td-status">
-                           <button class="sp">已启用</button>
-                        </td>
-                        <td class="td-manage">
-                            <a style="text-decoration:none" onclick="member_stop(this,'10001')" href="javascript:;" title="停用">
-                                <i class="layui-icon">&#xe601;</i>
-                            </a>
-                            <a title="编辑" href="javascript:;" onclick="user_management_edit('编辑','user_management_edit.html','4','','510')"
-                            class="ml-5" style="text-decoration:none">
-                                <i class="layui-icon">&#xe642;</i>
-                            </a>
-                            <a style="text-decoration:none"  onclick="user_management_password('修改密码','user_management_password.html','10001','600','400')"
-                            href="javascript:;" title="修改密码">
-                                <i class="layui-icon">&#xe631;</i>
-                            </a>
-                            <a title="删除" href="javascript:;" onclick="member_del(this,'1')" 
-                            style="text-decoration:none">
-                                <i class="layui-icon">&#xe640;</i>
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <input type="checkbox" value="6" name="selected">
-                        </td>
-                        <td>
-                            6
-                        </td>
-                        <td><u style="cursor:pointer" onclick="user_management_show('宋加加','user_management_show.html','10001','360','400')">赵六</u></td>
-                        <td >
-                        123456</td>
-                        <td >
-                            用户</td>
-                        <td >
-                            男</td>
-                        <td>
-                            2017-07-16 23:54:54
-                        </td>
-                        <td class="td-status">
-                            <button class="sp">已启用</button>
-                        </td>
-                        <td class="td-manage">
-                            <a style="text-decoration:none" onclick="member_stop(this,'10001')" href="javascript:;" title="停用">
-                                <i class="layui-icon">&#xe601;</i>
-                            </a>
-                            <a title="编辑" href="javascript:;" onclick="user_management_edit('编辑','user_management_edit.html','4','','510')"
-                            class="ml-5" style="text-decoration:none">
-                                <i class="layui-icon">&#xe642;</i>
-                            </a>
-                            <a style="text-decoration:none"  onclick="user_management_password('修改密码','user_management_password.html','10001','600','400')"
-                            href="javascript:;" title="修改密码">
-                                <i class="layui-icon">&#xe631;</i>
-                            </a>
-                            <a title="删除" href="javascript:;" onclick="member_del(this,'1')" 
-                            style="text-decoration:none">
-                                <i class="layui-icon">&#xe640;</i>
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <input type="checkbox" value="7" name="selected">
-                        </td>
-                        <td>
-                            7
-                        </td>
-                        <td><u style="cursor:pointer" onclick="user_management_show('宋加加','user_management_show.html','10001','360','400')">爱丽丝</u></td>
-                        <td >
-                        123456</td>
-                        <td >
-                            超级管理员</td>
-                        <td >女</td>
-                        <td>
-                            2017-07-17 18:43:32</td>
-                        <td class="td-status">
-                            <button class="sp">已启用</button>
-                        </td>
-                        <td class="td-manage">
-                            <a style="text-decoration:none" onclick="member_stop(this,'10001')" href="javascript:;" title="停用">
-                                <i class="layui-icon">&#xe601;</i>
-                            </a>
-                            <a title="编辑" href="javascript:;" onclick="user_management_edit('编辑','user_management_edit.html','4','','510')"
-                            class="ml-5" style="text-decoration:none">
-                                <i class="layui-icon">&#xe642;</i>
-                            </a>
-                            <a style="text-decoration:none"  onclick="user_management_password('修改密码','user_management_password.html','10001','600','400')"
-                            href="javascript:;" title="修改密码">
-                                <i class="layui-icon">&#xe631;</i>
-                            </a>
-                            <a title="删除" href="javascript:;" onclick="member_del(this,'1')" 
-                            style="text-decoration:none">
-                                <i class="layui-icon">&#xe640;</i>
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <input type="checkbox" value="8" name="selected">
-                        </td>
-                        <td>
-                            8</td>
-                        <td><u style="cursor:pointer" onclick="user_management_show('宋加加','user_management_show.html','10001','360','400')">伊丽莎白</u></td>
-                        <td >
-                        123456</td>
-                        <td >
-                            普通用户</td>
-                        <td >女</td>
-                        <td>
-                            2017-07-18 03:43:43
-                        </td>
-                        <td class="td-status">
-                            <button class="sp">已启用</button>
-                        </td>
-                        <td class="td-manage">
-                            <a style="text-decoration:none" onclick="member_stop(this,'10001')" href="javascript:;" title="停用">
-                                <i class="layui-icon">&#xe601;</i>
-                            </a>
-                            <a title="编辑" href="javascript:;" onclick="user_management_edit('编辑','user_management_edit.html','4','','510')"
-                            class="ml-5" style="text-decoration:none">
-                                <i class="layui-icon">&#xe642;</i>
-                            </a>
-                            <a style="text-decoration:none"  onclick="user_management_password('修改密码','user_management_password.html','10001','600','400')"
-                            href="javascript:;" title="修改密码">
-                                <i class="layui-icon">&#xe631;</i>
-                            </a>
-                            <a title="删除" href="javascript:;" onclick="member_del(this,'1')" 
-                            style="text-decoration:none">
-                                <i class="layui-icon">&#xe640;</i>
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <input type="checkbox" value="9" name="selected">
-                        </td>
-                        <td>
-                            9
-                        </td>
-                      <td><u style="cursor:pointer" onclick="user_management_show('宋加加','user_management_show.html','10001','360','400')">小明</u></td>
-                        <td >
-                        123456</td>
-                        <td >用户</td>
-                        <td >
-                            男</td>
-                        <td>
-                            2017-07-18 13:34:54
-                        </td>
-                        <td class="td-status">
-                            <button class="sp">已启用</button>
-                        </td>
-                        <td class="td-manage">
-                            <a style="text-decoration:none" onclick="member_stop(this,'10001')" href="javascript:;" title="停用">
-                                <i class="layui-icon">&#xe601;</i>
-                            </a>
-                            <a title="编辑" href="javascript:;" onclick="user_management_edit('编辑','user_management_edit.html','4','','510')"
-                            class="ml-5" style="text-decoration:none">
-                                <i class="layui-icon">&#xe642;</i>
-                            </a>
-                            <a style="text-decoration:none"  onclick="user_management_password('修改密码','user_management_password.html','10001','600','400')"
-                            href="javascript:;" title="修改密码">
-                                <i class="layui-icon">&#xe631;</i>
-                            </a>
-                            <a title="删除" href="javascript:;" onclick="member_del(this,'1')" 
-                            style="text-decoration:none">
-                                <i class="layui-icon">&#xe640;</i>
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <input type="checkbox" value="10" name="selected">
-                        </td>
-                        <td>
-                            10
-                        </td>
-                        <td><u style="cursor:pointer" onclick="user_management_show('宋加加','user_management_show.html','10001','360','400')">张三丰</u></td>
-                        <td >
-                        123456</td>
-                        <td >
-                            用户</td>
-                        <td >
-                            男</td>
-                        <td>
-                            2017-07-19 11:16:50
                         </td>
                         <td class="td-status">
                             <button class="sp">已启用</button>

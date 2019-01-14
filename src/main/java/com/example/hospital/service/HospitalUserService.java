@@ -20,4 +20,6 @@ public interface HospitalUserService {
     HospitalUserT selectByUserName(String userName);
     
     HospitalUserT userLand(HospitalUserT record);
+
+
 }
