@@ -36,11 +36,11 @@ function checkUserName(){
 </div>
 <div class="logintop"> <span>欢迎登录心理诊断后台</span>
   <ul>
-    <li><a href="#">返回首页</a></li>
+    <li><a href="login.html">返回首页</a></li>
   </ul>
 </div>
-<div class="loginbody"> <!-- <span class="systemlogo"></span> -->
-  <div class="loginbox">
+<div class="loginbody"> <span class="systemlogo"></span> 
+  <div class="loginbox" >
   	<form th:action="@{/user/register}" method="post" onsubmit="return checkUserName()">
     <ul>
       <li>
@@ -61,11 +61,11 @@ function checkUserName(){
         <input name="userSex" type="radio" value="2" />女
       </li>
       <li>
-      
         <input name="userIdcard" type="text" class="loginuser" value="4315689556598" />
       </li>
       <li>
         <input type="submit" class="loginbtn" value="注册" />
+        <input type="button" id="login" class="loginbtn" value="已有账号"/>
       </li>
     </ul>
     </form>
