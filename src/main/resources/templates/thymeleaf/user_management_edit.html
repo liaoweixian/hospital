@@ -16,14 +16,15 @@
         <link rel="stylesheet" th:href="@{/css/pag.css}" media="all"> 
     </head>
     
+    
     <body>
         <div class="x-body">
-            <form class="layui-form">
+            <form class="layui-form" >
                 <div class="layui-form-item">
                     <label class="layui-form-label">
                         用户名称</label>
                     <div class="layui-input-inline">
-                        <input type="text" class="layui-input">
+                        <input type="text" class="layui-input"  name="name" >
                     </div>
                     <div class="layui-form-mid layui-word-aux">必填</div>
                 </div>
@@ -65,10 +66,10 @@
                 </div>
             </form>
         </div>
+        <script th:src="@{/js/jquery2.js}" charset="utf-8"></script> 
         <script th:src="@{/lib/layui/layui.js}" charset="utf-8"></script>
         <script th:src="@{/js/x-layui.js}" charset="utf-8"></script> 
-		<script th:src="@{/js/jquery2.js}" charset="utf-8"></script> 
-		<script th:src="@{]js/js.js}" charset="utf-8"></script>
+		<script th:src="@{/js/js.js}" charset="utf-8"></script>
         <script>
             layui.use(['form','layer'], function(){
                 $ = layui.jquery;

@@ -22,7 +22,7 @@ public class HospitalUserServiceImpl implements HospitalUserService {
 	}
 
 	@Override
-	public int insert(HospitalUserT record) {
+	public Integer insert(HospitalUserT record) {
 		//判断用户是否已经被使用过
 		String userLoginName = record.getUserLoginName();
 		HospitalUserT user = hospitalUserTMapper.selectByUserName(userLoginName);
@@ -46,9 +46,10 @@ public class HospitalUserServiceImpl implements HospitalUserService {
 	
 
 	@Override
-	public int updateByPrimaryKey(HospitalUserT record) {
-		// TODO Auto-generated method stub
-		return 0;
+	public Integer updateByPrimaryKey(HospitalUserT record) {
+	
+			return hospitalUserTMapper.updateByPrimaryKey(record);
+        
 	}
 
 	/**

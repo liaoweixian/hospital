@@ -1,6 +1,18 @@
 <!DOCTYPE html>
 <html>
-    
+    <script>
+    function insert() {
+    	            $.ajax({
+    	                type: "POST",//方法
+    	                url: "/hospital/userInfo/add", 
+    	              //表单接收url
+    	                data: $('#form1').serialize(),
+    	                success: function () {
+    	                 alert("添加成功") 
+    	                }
+    	            });
+    	        }
+    	    </script>
     <head>
         <meta charset="utf-8">
         <title>
@@ -15,14 +27,15 @@
         <link rel="stylesheet" th:href="@{/css/x-admin.css}" media="all">
     </head>
     
+    
     <body>
         <div class="x-body">
-            <form class="layui-form">
+            <form class="layui-form" th:action="@{/view/user_management_add}" onsubmit="return false" method="post" id="form1">
                 <div class="layui-form-item">
                     <label for="L_email" class="layui-form-label">
-                        <span class="x-red">*</span>用户名称</label>
+                        <span class="x-red">*</span>用户名</label>
                     <div class="layui-input-inline">
-                        <input type="text"  name="name" 
+                        <input type="text"  name="userLoginName" 
                          class="layui-input">
                     </div>
                     <div class="layui-form-mid layui-word-aux">
@@ -35,7 +48,7 @@
                         <span class="x-red">*</span>密码
                     </label>
                     <div class="layui-input-inline">
-                        <input type="password" id="L_pass" name="pass" class="layui-input">
+                        <input type="password" id="L_pass" name="userPassword" class="layui-input">
                     </div>
                     <div class="layui-form-mid layui-word-aux">
                         6到16个字符
@@ -43,40 +56,40 @@
                 </div>
                 <div class="layui-form-item">
                     <label for="L_repass" class="layui-form-label">
-                        <span class="x-red">*</span>确认密码
+                        <span class="x-red">*</span>用户姓名
                     </label>
                     <div class="layui-input-inline">
-                        <input type="password" id="L_repass" name="repass" class="layui-input">
+                        <input type="text" id="L_repass" name="userName" class="layui-input">
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label for="L_username" class="layui-form-label">
-                        <span class="x-red">*</span>用户角色</label>
+                        <span class="x-red">*</span>用户性别</label>
                     <div class="layui-input-inline">
-                        <input type="text" id="username" name="username"  class="layui-input">
+                        <input type="text" id="username" name="userSex"  class="layui-input">
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label for="L_username" class="layui-form-label">
-                        <span class="x-red">*</span>性别
+                        <span class="x-red">*</span>身份证号码
                     </label>
                     <div class="layui-input-inline">
-                        <input type="text" id="L_username" name="xingbie"  class="layui-input">
+                        <input type="text" id="L_username" name="userIdcard"  class="layui-input">
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label for="L_repass" class="layui-form-label">
                     </label>
-                    <button  class="layui-btn">
+                    <button  class="layui-btn" type="submit" onclick="insert()">
                         增加
                     </button>
                 </div>
             </form>
         </div>
+        <script th:src="@{/js/jquery2.js}" charset="utf-8"></script> 
         <script th:src="@{/lib/layui/layui.js}" charset="utf-8"></script>
         <script th:src="@{/js/x-layui.js}" charset="utf-8"></script> 
-		<script th:src="@{/js/jquery2.js}" charset="utf-8"></script> 
-		<script th:src="@{]js/js.js}" charset="utf-8"></script>
+		<script th:src="@{/js/js.js}" charset="utf-8"></script>
     </body>
 
 </html>

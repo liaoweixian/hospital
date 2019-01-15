@@ -82,7 +82,7 @@
                             1
                         </td>
                         <td th:text="${user.userLoginName}"><u style="cursor:pointer" onclick="user_management_show('宋加加','user_management_show.html','10001','360','400')">求大神</u></td>
-                        <td th:text="${user.userPassword}">
+                        <td >
                         123456</td>
                         <td th:text="${user.userName}">
                             张三</td>
@@ -100,7 +100,7 @@
                             <a style="text-decoration:none" onclick="member_stop(this,'10001')" href="javascript:;" title="停用">
                                 <i class="layui-icon">&#xe601;</i>
                             </a>
-                            <a title="编辑" href="javascript:;" onclick="user_management_edit('编辑','user_management_edit.html','4','','510')"
+                            <a title="编辑" href="javascript:;" th:attr="target_id=${user.userSex}" onclick="user_management_edit('编辑','/view/user_management_edit','4','','510')"
                             class="ml-5" style="text-decoration:none">
                                 <i class="layui-icon">&#xe642;</i>
                             </a>
@@ -125,10 +125,11 @@
 <br />
 <br />
 <br />
-        <script th:src="@{/lib/layui/layui.js}" charset="utf-8"></script>
-        <script th:src="@{/js/x-layui.js}" charset="utf-8"></script> 
+<script th:src="@{/js/public.js}" charset="utf-8"></script> 
+<script th:src="@{/lib/layui/layui.js}" charset="utf-8"></script>
+<script th:src="@{/js/x-layui.js}" charset="utf-8"></script> 
 <script th:src="@{/js/jquery2.js}" charset="utf-8"></script> 
-<script th:src="@{]js/js.js}" charset="utf-8"></script>
+<script th:src="@{/js/js.js}" charset="utf-8"></script>
         <script>
             layui.use(['laydate','element','laypage','layer'], function(){
                 $ = layui.jquery;//jquery
@@ -170,7 +171,8 @@
             }
             // 用户-编辑
             function user_management_edit (title,url,id,w,h) {
-                x_admin_show(title,url,w,h); 
+            	console.log($(this));
+                //x_admin_show(title,url,w,h); 
             }
             /*密码-修改*/
             function user_management_password(title,url,id,w,h){

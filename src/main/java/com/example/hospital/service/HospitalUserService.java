@@ -9,13 +9,13 @@ public interface HospitalUserService {
 	
     int deleteByPrimaryKey(Integer id);
 
-    int insert(HospitalUserT record);
+    Integer insert(HospitalUserT record);
 
     HospitalUserT selectByPrimaryKey(Integer id);
 
     List<HospitalUserT> selectAll();
 
-    int updateByPrimaryKey(HospitalUserT record);
+    Integer updateByPrimaryKey(HospitalUserT record);
     
     HospitalUserT selectByUserName(String userName);
     
