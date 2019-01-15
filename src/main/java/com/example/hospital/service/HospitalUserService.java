@@ -21,5 +21,5 @@ public interface HospitalUserService {
     
     HospitalUserT userLand(HospitalUserT record);
 
-
+    HospitalUserT selectIdByUserName(Integer id,String userName);
 }

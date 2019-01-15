@@ -50,5 +50,17 @@ public interface HospitalUserTMapper {
      */
     HospitalUserT selectByUserName(String userName);
 
-    
+    /**
+     *
+     * @param id
+     * @return
+     */
+    HospitalUserT selectByPrimaryKey(Integer id);
+
+    /**
+     *
+     * @param record
+     * @return
+     */
+    HospitalUserT selectIdByUserName(HospitalUserT record);
 }

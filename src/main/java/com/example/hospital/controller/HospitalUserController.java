@@ -33,7 +33,35 @@ public class HospitalUserController {
 		hospitalUserServiceImpl.insert(user);
 		return "login";
 	}
-	
+
+	@GetMapping("/checkName/{userName}/{id}")
+	@ResponseBody
+	public boolean checkUserName(@PathVariable("userName") String userName,@PathVariable("id") String id) {
+		HospitalUserT user = null;
+		if ( id != null )
+		{
+			user = hospitalUserServiceImpl.selectIdByUserName(Integer.parseInt(id),userName);
+			if (user == null)
+			{
+				user = hospitalUserServiceImpl.selectByUserName(userName);
+			}
+			else
+			{
+				return false;
+			}
+		}
+		else
+		{
+			System.out.println("------------------------------");
+			user = hospitalUserServiceImpl.selectByUserName(userName);
+		}
+		if(user != null) {
+			return true;
+		}else {
+			return false;
+		}
+	}
+
 	@GetMapping("/checkName/{userName}")
 	@ResponseBody
 	public boolean checkUserName(@PathVariable("userName") String userName) {

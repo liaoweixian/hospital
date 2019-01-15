@@ -36,7 +36,7 @@ public class HospitalUserServiceImpl implements HospitalUserService {
 	@Override
 	public HospitalUserT selectByPrimaryKey(Integer id) {
 		// TODO Auto-generated method stub
-		return null;
+		return hospitalUserTMapper.selectByPrimaryKey(id);
 	}
 
 	@Override
@@ -74,4 +74,12 @@ public class HospitalUserServiceImpl implements HospitalUserService {
 		}
 	}
 
+	@Override
+	public HospitalUserT selectIdByUserName(Integer id, String userName) {
+		HospitalUserT user = new HospitalUserT();
+		user.setId(id);
+		user.setUserLoginName(userName);
+		HospitalUserT userT = hospitalUserTMapper.selectIdByUserName(user);
+		return userT;
+	}
 }

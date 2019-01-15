@@ -88,4 +88,10 @@
     user_last_login_time, creat_time, last_modify_time, data_state
     from hospital_user_t
   </select>
+  <select id="selectIdByUserName" resultMap="BaseResultMap" parameterType="com.example.hospital.pojo.HospitalUserT">
+     select id, user_login_name, user_password, user_name, user_sex, user_idcard, user_roleid,
+    user_last_login_time, creat_time, last_modify_time, data_state
+    from hospital_user_t
+    where user_login_name = #{userLoginName,jdbcType=VARCHAR} and id = #{id,jdbcType=INTEGER}
+  </select>
 </mapper>

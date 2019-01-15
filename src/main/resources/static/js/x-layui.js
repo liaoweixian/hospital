@@ -8,11 +8,6 @@
 	h		弹出层高度（缺省调默认值）
 */
 function x_admin_show(title,url,w,h,target){
-	console.log(target);
-	console.log($(target).attr('target_id'));
-	console.log(this);
-	var target_id = $(this).attr('target_id');
-	alert(target_id);
 	if (title == null || title == '') {
 		title=false;
 	};

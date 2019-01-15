@@ -3,15 +3,12 @@ package com.example.hospital.controller;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.hospital.pojo.HospitalUserT;
@@ -45,11 +42,22 @@ public class UserController {
 		return 0;
 	}
 	
-	@GetMapping("update")
+	@RequestMapping("update")
 	@ResponseBody
-	public int updateUser(HospitalUserT record) {
-		System.out.println("修改");
-		return hospitalUserServiceImpl.updateByPrimaryKey(record);
+	public int updateUser(HospitalUserT record,HttpServletRequest request) {
+		/*HttpSession session = request.getSession();
+		session.getAttribute("")*/
+		HospitalUserT oldUser = hospitalUserServiceImpl.selectByPrimaryKey(record.getId());
+		oldUser.setUserLoginName(record.getUserLoginName());
+		return hospitalUserServiceImpl.updateByPrimaryKey(oldUser);
+	}
 
+	@RequestMapping("user/{target_page}/{id}")
+	public ModelAndView getUser(@PathVariable("target_page") String target_page,@PathVariable("id") String id,ModelAndView view)
+	{
+		HospitalUserT userInfo = hospitalUserServiceImpl.selectByPrimaryKey(Integer.parseInt(id));
+		view.addObject("userInfo", userInfo);
+		view.setViewName(target_page);
+		return view;
 	}
 }
