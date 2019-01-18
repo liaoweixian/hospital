@@ -45,11 +45,14 @@ public class UserController {
 	@RequestMapping("update")
 	@ResponseBody
 	public int updateUser(HospitalUserT record,HttpServletRequest request) {
+		System.out.println(record);
 		/*HttpSession session = request.getSession();
 		session.getAttribute("")*/
 		HospitalUserT oldUser = hospitalUserServiceImpl.selectByPrimaryKey(record.getId());
 		oldUser.setUserLoginName(record.getUserLoginName());
+		oldUser.setUserSex(record.getUserSex());
 		return hospitalUserServiceImpl.updateByPrimaryKey(oldUser);
+		
 	}
 
 	@RequestMapping("user/{target_page}/{id}")
