@@ -25,7 +25,7 @@ public interface HospitalUserService {
 
     HospitalUserT selectIdByUserName(Integer id,String userName);
     
-    List<HospitalUserT> selectUserSearch(String userName,String userIdcard);
+    List<HospitalUserT> selectUserSearch(HospitalUserT hospitalUserT);
     
     List<HospitalUserT> queryUserPage(int page,int rows);
 }

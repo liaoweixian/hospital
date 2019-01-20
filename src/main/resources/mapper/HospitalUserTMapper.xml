@@ -85,15 +85,16 @@
   <select id="selectUserSearch" resultMap="BaseResultMap" parameterType="com.example.hospital.pojo.HospitalUserT" >
     select id, user_login_name, user_password, user_name, user_sex, user_idcard, user_roleid, 
     user_last_login_time, creat_time, last_modify_time, data_state
-    from hospital_user_t 
-    <if test="userIdcard != null or userName != null"> where </if>
-    <if test="userIdcard != null">
-    	user_idcard like CONCAT(CONCAT('%',#{userIdcard,jdbcType=VARCHAR}),'%')
+    from hospital_user_t where 1=1  
+    <if test="(userIdcard != null and userIdcard != '') or (userName != null and userName != '')"> and </if>
+    <if test="userIdcard != null and userIdcard != ''">
+    	user_idcard like CONCAT(CONCAT('%',#{userIdcard}),'%')
     </if>
-    <if test="userIdcard != null and userName != null"> or </if>
-    <if test="userName != null">
-    	user_name like CONCAT(CONCAT('%',#{userName,jdbcType=VARCHAR}),'%')
+    <if test="userIdcard != null and userIdcard != '' and userName != null and userName != ''"> or </if>
+    <if test="userName != null and userName != '' ">
+    	user_name like CONCAT(CONCAT('%',#{userName}),'%')
     </if>
+    <if test="page != null"> limit #{limitStart,jdbcType=INTEGER},#{pageCount,jdbcType=INTEGER} </if>
   </select>
   
   <select id="selectByUserName" resultMap="BaseResultMap" parameterType="java.lang.String" >
@@ -115,6 +116,15 @@
   
   <select id="selectUserCount" resultType="int" parameterType="com.example.hospital.pojo.HospitalUserT">
     select count(1) from hospital_user_t 
+    where 1=1 
+    <if test="(userIdcard != null and userIdcard != '') or (userName != null and userName != '')"> and </if>
+    <if test="userIdcard != null and userIdcard != ''">
+    	user_idcard like CONCAT(CONCAT('%',#{userIdcard}),'%')
+    </if>
+    <if test="userIdcard != null and userIdcard != '' and userName != null and userName != ''"> or </if>
+    <if test="userName != null and userName != '' ">
+    	user_name like CONCAT(CONCAT('%',#{userName}),'%')
+    </if>
   </select>
   
   <select id="selectUserByPaging" resultMap="BaseResultMap" parameterType="com.example.hospital.pojo.HospitalUserT">

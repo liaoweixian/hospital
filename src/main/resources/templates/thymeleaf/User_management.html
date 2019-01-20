@@ -12,7 +12,12 @@
         <meta name="apple-mobile-web-app-capable" content="yes">
         <meta name="format-detection" content="telephone=no">
         <link rel="stylesheet" th:href="@{/css/x-admin.css}" media="all">
-        <link rel="stylesheet" th:href="@{/css/pag.css}" media="all">        
+        <link rel="stylesheet" th:href="@{/css/pag.css}" media="all">     
+        <style type="text/css">
+        .page_sel {
+        	background-color: blue;
+        }   
+        </style>   
     </head>
     <body>
         <div class="x-nav">
@@ -28,14 +33,14 @@
                   <div class="layui-form-item">
                     <label class="layui-form-label">身份证号</label>
                     <div class="layui-input-inline" style="width:100px">
-                      <input type="text" name="userIdcard"  placeholder="身份证号" autocomplete="off" class="layui-input">
+                      <input type="text" name="userIdcard"  placeholder="身份证号" th:value="${search.userIdcard}" autocomplete="off" class="layui-input">
                     </div>
                     <label class="layui-form-label">姓名</label>
                     <div class="layui-input-inline" style="width:100px">
-                      <input type="text" name="userName"  placeholder="姓名" autocomplete="off" class="layui-input">
+                      <input type="text" name="userName"  placeholder="姓名" th:value="${search.userName}" autocomplete="off" class="layui-input">
                     </div>
                     <div class="layui-input-inline" style="width:80px">
-                        <button class="layui-btn" onclick="userSearch()" type="button">搜索</button>
+                        <button class="layui-btn search"  type="button">搜索</button>
                     </div>
                   </div>
                 </div> 
@@ -118,11 +123,12 @@
             </table>
 <div class="page"  v-show="show">
   <div class="pagelist"> 
-  <!-- <span class="jump">上一页</span> 
-  <span class="jump" th:each="i=0;i<${userList.size()};i++" th:text="${i}"></span>
+  <input type="hidden" name="number_page_count" th:value="${search.numberPageCount}"/>
+  <span class="jump page_top" th:tage="${search.page == 1 ? 1 : search.page}">上一页</span> 
+  <span  th:each="i:${#numbers.sequence(1,search.numberPageCount)}" th:text="${i}" th:tage="${i}" th:classappend="${search.page == i ? 'page_sel' : '' }" class="jump page_click "></span>
   <span class="ellipsis">...</span> 
-  <span class="jump">下一页</span> <span class="jumppoint">跳转到：</span> 
-  <span class="jumpinp"><input type="text"></span> <span class="jump gobtn">GO</span> -->
+  <span class="jump page_next">下一页</span> <span class="jumppoint">跳转到：</span> 
+  <span class="jumpinp"><input type="number" name="jump_page"></span> <span class="jump gobtn">GO</span>
   </div>
 </div>
 </div>
@@ -143,7 +149,7 @@
 
             });
             
-            var message = [[${userList.size()}]];
+            /* var message = [[${userList.size()}]];
             var totalPages = Math.ceil(message / 10);
             $(".pagelist").append("<span class='jump'>上一页</span>");
             for(var i=0;i<totalPages;i++){
@@ -151,55 +157,9 @@
             }
             $(".pagelist").append("<span class='ellipsis'>...</span>");
             $(".pagelist").append("<span class='jump'>下一页</span> <span class='jumppoint'>跳转到：</span><span class='jumpinp'><input type='text'></span> <span class='jump gobtn'>GO</span>");
-            
-            
-            
-            
-            function userSearch(){
-            	var userIdcard = $("input[name='userIdcard']").val();
-            	var userName = $("input[name='userName']").val();
-            	$.ajax({
-	          		  type: "GET",
-	          		  url: "/hospital/userInfo/userSearch?userName="+userName+"&userIdcard="+userIdcard,
-	          		  success: function(data){
-	          			  //alert(data);
-	          			  $(".tablelist tbody").empty();
-	          			  for(var i=0;i<data.length;i++){
-	          				  var role = "普通用户";
-	          				  if(data[i].userRoleid == 1){
-	          					role = "普通用户";
-	          				  }
-	          				$(".tablelist tbody").append("<tr>"+
-		          					  "<td><input type='checkbox' name='selected' value="+data[i].id+"/></td>"+
-		          					  "<td name='userId'>"+data[i].id+"</td>"+
-		          					  "<td>"+data[i].userLoginName+"</td>"+
-		          					  "<td>"+data[i].userPassword+"</td>"+
-		          					  "<td>"+data[i].userName+"</td>"+
-	                        		  "<td>"+role+"</td>"+
-				                      "<td>"+data[i].userSex+"</td>"+
-				                      "<td>"+data[i].userIdcard+"</td>"+
-				                      "<td class='td-status'><button class='sp'>已启用</button></td>"+
-				                      "<td class='td-manage'>"+
-				                          "<a style='text-decoration:none' onclick='member_stop(this,\"10001\")' href='javascript:;' title='停用'>"+
-				                              "<i class='layui-icon'>&#xe601;</i>"+
-				                          "</a>"+
-				                          "<a title='编辑' href='javascript:;' onclick='user_management_edit(\"编辑\",\"/userInfo/user/user_management_edit\",\"4\",\"\",\"510\",this)' class='ml-5' style='text-decoration:none'>"+
-				                              "<i class='layui-icon'>&#xe642;</i>"+
-				                          "</a>"+
-				                          "<a style='text-decoration:none' onclick='user_management_password(\"修改密码\",\"/view/user_management_password\",\"10001\",\"600\",\"400\")' href='javascript:;' title='修改密码'>"+
-				                              "<i class='layui-icon'>&#xe631;</i>"+
-				                          "</a>"+
-				                          "<a title='删除' href='javascript:;' onclick='member_del(this)' style='text-decoration:none'>"+
-				                              "<i class='layui-icon'>&#xe640;</i>"+
-				                          "</a>"+
-				                      "</td>"+
-				                    "</tr>");
-	          			  }
-	          			  
-	          		  }
-	          	});
-            }
-
+              */
+          
+			
             function deleteAll(){
             	var userArray = $("input[name='selected']:checked");
             	var array = [];
@@ -269,7 +229,55 @@
             function user_management_password(title,url,id,w,h){
                 x_admin_show(title,url,w,h);  
             }
-           
+           	$(".page_click").click(function(){
+           		jumpPage($(this).attr('tage'));
+           	});
+           	$(".gobtn").click(function(){
+           		var jump_page = $("input[name=jump_page]").val();
+           		if (jump_page == '' || typeof(jump_page) == 'undefined' ) {
+           			return false;
+           		}
+           		jumpPage(jump_page);
+           	});
+           	$(".search").click(function(){
+           		jumpPage(1);
+           	});
+           	function jumpPage(jump_page){
+           		if (jump_page == '' || typeof(jump_page) == 'undefined' ) {
+           			page = 1;
+           		}
+           		var userIdcard = $("input[name='userIdcard']").val();
+            	var userName = $("input[name='userName']").val();
+            	window.location.href = host+"/userInfo/query?page="+jump_page+"&userName="+userName+"&userIdcard="+userIdcard;
+           	}
+           	$(".page_top").click(function(){
+           		var page = $(".page_sel").attr('tage');
+           		if (page == '' || typeof(page) == undefined ) {
+           			return false;
+           		}
+           		page = parseInt(page) - 1;
+           		if ( page < 1 ) {
+           			alert('没有上一页了！');
+           		} else {
+               		jumpPage( page );
+           		}
+           	});
+           	$(".page_next").click(function(){
+           		var page = $(".page_sel").attr('tage');
+           		var number_page_count = $("input[name=number_page_count]").val();
+           		if (page == '' || typeof(page) == undefined ) {
+           			return false;
+           		}
+           		page = parseInt(page)+1;
+           		if ( page <= number_page_count ) {
+           			jumpPage( page );
+           		} else {
+           			alert('已是最后一页');
+           		}
+           		
+           	});
+           	
+           	
 	$('.tablelist tbody tr:odd').addClass('odd');
             </script>
     </body>

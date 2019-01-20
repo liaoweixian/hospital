@@ -88,26 +88,18 @@ public class HospitalUserServiceImpl implements HospitalUserService {
 	}
 	
 	
-	public List<HospitalUserT> selectUserSearch(String userName,String userIdcard) {
-		HospitalUserT user = new HospitalUserT();
-		if(userName != null && (!"".equals(userName))) {			
-			user.setUserName(userName);
-			System.out.println(userName);
-		}
-		if(userName != null && (!"".equals(userIdcard))) {
-			user.setUserIdcard(userIdcard);
-			System.out.println(userIdcard);
-		}
-		return hospitalUserTMapper.selectUserSearch(user);
+	public List<HospitalUserT> selectUserSearch(HospitalUserT userIdcard) {
+		return hospitalUserTMapper.selectUserSearch(userIdcard);
 	}
 	
 	public List<HospitalUserT> queryUserPage(int page,int rows) {
-		int count = hospitalUserTMapper.selectUserCount(new HospitalUserT());
+		/*int count = hospitalUserTMapper.selectUserCount();
 		HospitalUserT user = new HospitalUserT();
 		
 		user.setStartSize(rows*(page-1));//开始位置  page 第几页
 
 		user.setEndSize(rows);//每页多少个
-		return hospitalUserTMapper.selectUserByPaging(user);
+		return hospitalUserTMapper.selectUserByPaging(user);*/
+		return null;
 	}
 }

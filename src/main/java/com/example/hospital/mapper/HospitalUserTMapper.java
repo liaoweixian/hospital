@@ -78,7 +78,7 @@ public interface HospitalUserTMapper {
      * @param record
      * @return
      */
-    int selectUserCount(HospitalUserT record);
+    int selectUserCount(HospitalUserT hospitalUserT);
     
     /**
      * 分页查询

@@ -8,6 +8,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.catalina.Host;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -22,6 +23,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.example.hospital.mapper.HospitalUserTMapper;
+import com.example.hospital.pojo.BasePageT;
 import com.example.hospital.pojo.HospitalUserT;
 import com.example.hospital.service.HospitalUserService;
 
@@ -32,11 +35,20 @@ public class UserController {
 	@Autowired
 	private HospitalUserService hospitalUserServiceImpl;
 	
+	@Autowired
+	private HospitalUserTMapper hospitalUserTMapper;
+	
 	@GetMapping("query")
-	public ModelAndView queryUser() {
+	public ModelAndView queryUser(HospitalUserT hospitalUserT) {
 		ModelAndView view = new ModelAndView();
-		List<HospitalUserT> userList = hospitalUserServiceImpl.queryUserPage(1, 10);
+		System.out.println(hospitalUserT.getUserIdcard());
+		System.out.println(hospitalUserT.getUserName());
+		List<HospitalUserT> userList = hospitalUserServiceImpl.selectUserSearch(hospitalUserT);
+		hospitalUserT.setNumberPageCount(hospitalUserTMapper.selectUserCount(hospitalUserT));
+		System.out.println(hospitalUserTMapper.selectUserCount(hospitalUserT));
+		System.out.println(hospitalUserT.getNumberPageCount());
 		view.addObject("userList", userList);
+		view.addObject("search",hospitalUserT);
 		view.setViewName("User_management");
 		return view;
 	}
@@ -94,11 +106,16 @@ public class UserController {
 		return view;
 	}
 	
-	
+	//@RequestParam(name="userName",required=false) String userName,@RequestParam(name="userIdcard",required=false) String userIdcard,@RequestParam(name="page",defaultValue="0") String page
 	@GetMapping("userSearch")
 	@ResponseBody
-	public List<HospitalUserT> userSearch(@RequestParam(name="userName",required=false) String userName,@RequestParam(name="userIdcard",required=false) String userIdcard){
-		return hospitalUserServiceImpl.selectUserSearch(userName, userIdcard);
+	public List<HospitalUserT> userSearch(HospitalUserT userIdcard){
+		System.out.println(userIdcard);
+		return null;
+		/*Integer count =  hospitalUserTMapper.selectUserCount();
+		List<HospitalUserT> userList = hospitalUserServiceImpl.selectUserSearch(userName, userIdcard);*/
+		
+		//return hospitalUserServiceImpl.selectUserSearch(userName, userIdcard);
 	}
 	
 	@GetMapping("userPage/{page}/{rows}")
