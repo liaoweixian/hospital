@@ -16,9 +16,13 @@ public class HospitalUserServiceImpl implements HospitalUserService {
 	private HospitalUserTMapper hospitalUserTMapper;
 	
 	@Override
-	public int deleteByPrimaryKey(Integer id) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int deleteByPrimaryKey(Integer userId) {
+		return hospitalUserTMapper.deleteByPrimaryKey(userId);
+	}
+	
+	@Override
+	public int deleteByPrimaryKeys(List<Integer> list) {
+		return hospitalUserTMapper.deleteByPrimaryKeys(list);
 	}
 
 	@Override
@@ -81,5 +85,29 @@ public class HospitalUserServiceImpl implements HospitalUserService {
 		user.setUserLoginName(userName);
 		HospitalUserT userT = hospitalUserTMapper.selectIdByUserName(user);
 		return userT;
+	}
+	
+	
+	public List<HospitalUserT> selectUserSearch(String userName,String userIdcard) {
+		HospitalUserT user = new HospitalUserT();
+		if(userName != null && (!"".equals(userName))) {			
+			user.setUserName(userName);
+			System.out.println(userName);
+		}
+		if(userName != null && (!"".equals(userIdcard))) {
+			user.setUserIdcard(userIdcard);
+			System.out.println(userIdcard);
+		}
+		return hospitalUserTMapper.selectUserSearch(user);
+	}
+	
+	public List<HospitalUserT> queryUserPage(int page,int rows) {
+		int count = hospitalUserTMapper.selectUserCount(new HospitalUserT());
+		HospitalUserT user = new HospitalUserT();
+		
+		user.setStartSize(rows*(page-1));//开始位置  page 第几页
+
+		user.setEndSize(rows);//每页多少个
+		return hospitalUserTMapper.selectUserByPaging(user);
 	}
 }

@@ -8,6 +8,8 @@ public interface HospitalUserService {
  
 	
     int deleteByPrimaryKey(Integer id);
+    
+    int deleteByPrimaryKeys(List<Integer> list);
 
     Integer insert(HospitalUserT record);
 
@@ -22,4 +24,8 @@ public interface HospitalUserService {
     HospitalUserT userLand(HospitalUserT record);
 
     HospitalUserT selectIdByUserName(Integer id,String userName);
+    
+    List<HospitalUserT> selectUserSearch(String userName,String userIdcard);
+    
+    List<HospitalUserT> queryUserPage(int page,int rows);
 }

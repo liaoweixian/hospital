@@ -14,11 +14,11 @@ public class LoginInterception implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
     	System.out.println("拦截器启动");
     	String servletPath = request.getServletPath();
-    	System.out.println(servletPath);
+    	/*System.out.println(servletPath);
     	String contextPath = request.getContextPath();
     	System.out.println(contextPath);
     	String requestURI = request.getRequestURI();
-    	System.out.println(requestURI);
+    	System.out.println(requestURI);*/
     	
     	if(!(servletPath.startsWith("/user/") || !(servletPath.equals("/view/index")))) {//如果不是
     		HttpSession session = request.getSession();

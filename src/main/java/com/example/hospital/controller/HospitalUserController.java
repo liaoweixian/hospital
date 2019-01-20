@@ -81,7 +81,7 @@ public class HospitalUserController {
 		if(resultUser != null) {
 			HttpSession session = httpServletRequest.getSession();
 			session.setAttribute("user", resultUser);
-			session.setMaxInactiveInterval(5*60);
+			session.setMaxInactiveInterval(60*60);
 			System.out.println("登录成功！");
 			resposeStatus.setStatus(1);
 			resposeStatus.setData("登录成功");

@@ -26,23 +26,23 @@
           <form class="layui-form x-center" action="" style="width:85%">
                 <div class="layui-form-pane">
                   <div class="layui-form-item">
-                    <label class="layui-form-label">编号</label>
+                    <label class="layui-form-label">身份证号</label>
                     <div class="layui-input-inline" style="width:100px">
-                      <input type="text" name="name"  placeholder="编号" autocomplete="off" class="layui-input">
+                      <input type="text" name="userIdcard"  placeholder="身份证号" autocomplete="off" class="layui-input">
                     </div>
                     <label class="layui-form-label">姓名</label>
                     <div class="layui-input-inline" style="width:100px">
-                      <input type="text" name="name"  placeholder="姓名" autocomplete="off" class="layui-input">
+                      <input type="text" name="userName"  placeholder="姓名" autocomplete="off" class="layui-input">
                     </div>
                     <div class="layui-input-inline" style="width:80px">
-                        <button class="layui-btn"  lay-submit="" lay-filter="*">搜索</button>
+                        <button class="layui-btn" onclick="userSearch()" type="button">搜索</button>
                     </div>
                   </div>
                 </div> 
             </form>
             <div class="tools">
     <ul class="toolbar">
-      <li><span><img th:src="@{/images/t03.png}" /></span>批量删除</li>
+      <li onclick="deleteAll()"><span><img th:src="@{/images/t03.png}"/></span>批量删除</li>
       <li onclick="user_management_add('添加用户','/view/user_management_add','600','500')"><span><img th:src="@{/images/t01.png}" /></span>添加</li>
     </ul>
     <span class="x-right" style="line-height:25px">共有数据：88 条</span></xblock>
@@ -76,9 +76,9 @@
                 <tbody>
                     <tr th:each="user : ${userList}">
                         <td>
-                            <input type="checkbox" value="1" name="selected">
+                            <input type="checkbox" th:value="${user.id}" name="selected">
                         </td>
-                        <td th:text="${user.id}">
+                        <td th:text="${user.id}" name="userId">
                             1
                         </td>
                         <td th:text="${user.userLoginName}"><u style="cursor:pointer" onclick="user_management_show('宋加加','user_management_show.html','10001','360','400')">求大神</u></td>
@@ -104,11 +104,11 @@
                             class="ml-5" style="text-decoration:none">
                                 <i class="layui-icon">&#xe642;</i>
                             </a>
-                            <a style="text-decoration:none"  onclick="user_management_password('修改密码','user_management_password.html','10001','600','400')"
+                            <a style="text-decoration:none"  onclick="user_management_password('修改密码','/view/user_management_password','10001','600','400')"
                             href="javascript:;" title="修改密码">
                                 <i class="layui-icon">&#xe631;</i>
                             </a>
-                            <a title="删除" href="javascript:;" onclick="member_del(this,'1')" 
+                            <a title="删除" href="javascript:;" onclick="member_del(this)" 
                             style="text-decoration:none">
                                 <i class="layui-icon">&#xe640;</i>
                             </a>
@@ -117,19 +117,23 @@
                 </tbody>
             </table>
 <div class="page"  v-show="show">
-  <div class="pagelist"> <span class="jump">上一页</span> <span class="jump">1</span> <span class="jump">2</span> <span class="jump">3</span> <span class="jump">4</span> <span class="jump">5</span> <span class="jump">6</span> <span class="ellipsis">...</span> <span class="jump">下一页</span> <span class="jumppoint">跳转到：</span> <span class="jumpinp">
-    <input type="text">
-    </span> <span class="jump gobtn">GO</span> </div>
+  <div class="pagelist"> 
+  <!-- <span class="jump">上一页</span> 
+  <span class="jump" th:each="i=0;i<${userList.size()};i++" th:text="${i}"></span>
+  <span class="ellipsis">...</span> 
+  <span class="jump">下一页</span> <span class="jumppoint">跳转到：</span> 
+  <span class="jumpinp"><input type="text"></span> <span class="jump gobtn">GO</span> -->
+  </div>
 </div>
 </div>
 <br />
 <br />
 <br />
-<script th:src="@{/js/public.js}" charset="utf-8"></script> 
 <script th:src="@{/lib/layui/layui.js}" charset="utf-8"></script>
 <script th:src="@{/js/x-layui.js}" charset="utf-8"></script> 
 <script th:src="@{/js/jquery2.js}" charset="utf-8"></script> 
 <script th:src="@{/js/js.js}" charset="utf-8"></script>
+<script th:src="@{/js/public.js}" charset="utf-8"></script>
         <script>
             layui.use(['laydate','element','laypage','layer'], function(){
                 $ = layui.jquery;//jquery
@@ -138,7 +142,94 @@
               layer = layui.layer;//弹出层
 
             });
+            
+            var message = [[${userList.size()}]];
+            var totalPages = Math.ceil(message / 10);
+            $(".pagelist").append("<span class='jump'>上一页</span>");
+            for(var i=0;i<totalPages;i++){
+            	$(".pagelist").append("<span class='jump'>"+(i+1)+"</span>");
+            }
+            $(".pagelist").append("<span class='ellipsis'>...</span>");
+            $(".pagelist").append("<span class='jump'>下一页</span> <span class='jumppoint'>跳转到：</span><span class='jumpinp'><input type='text'></span> <span class='jump gobtn'>GO</span>");
+            
+            
+            
+            
+            function userSearch(){
+            	var userIdcard = $("input[name='userIdcard']").val();
+            	var userName = $("input[name='userName']").val();
+            	$.ajax({
+	          		  type: "GET",
+	          		  url: "/hospital/userInfo/userSearch?userName="+userName+"&userIdcard="+userIdcard,
+	          		  success: function(data){
+	          			  //alert(data);
+	          			  $(".tablelist tbody").empty();
+	          			  for(var i=0;i<data.length;i++){
+	          				  var role = "普通用户";
+	          				  if(data[i].userRoleid == 1){
+	          					role = "普通用户";
+	          				  }
+	          				$(".tablelist tbody").append("<tr>"+
+		          					  "<td><input type='checkbox' name='selected' value="+data[i].id+"/></td>"+
+		          					  "<td name='userId'>"+data[i].id+"</td>"+
+		          					  "<td>"+data[i].userLoginName+"</td>"+
+		          					  "<td>"+data[i].userPassword+"</td>"+
+		          					  "<td>"+data[i].userName+"</td>"+
+	                        		  "<td>"+role+"</td>"+
+				                      "<td>"+data[i].userSex+"</td>"+
+				                      "<td>"+data[i].userIdcard+"</td>"+
+				                      "<td class='td-status'><button class='sp'>已启用</button></td>"+
+				                      "<td class='td-manage'>"+
+				                          "<a style='text-decoration:none' onclick='member_stop(this,\"10001\")' href='javascript:;' title='停用'>"+
+				                              "<i class='layui-icon'>&#xe601;</i>"+
+				                          "</a>"+
+				                          "<a title='编辑' href='javascript:;' onclick='user_management_edit(\"编辑\",\"/userInfo/user/user_management_edit\",\"4\",\"\",\"510\",this)' class='ml-5' style='text-decoration:none'>"+
+				                              "<i class='layui-icon'>&#xe642;</i>"+
+				                          "</a>"+
+				                          "<a style='text-decoration:none' onclick='user_management_password(\"修改密码\",\"/view/user_management_password\",\"10001\",\"600\",\"400\")' href='javascript:;' title='修改密码'>"+
+				                              "<i class='layui-icon'>&#xe631;</i>"+
+				                          "</a>"+
+				                          "<a title='删除' href='javascript:;' onclick='member_del(this)' style='text-decoration:none'>"+
+				                              "<i class='layui-icon'>&#xe640;</i>"+
+				                          "</a>"+
+				                      "</td>"+
+				                    "</tr>");
+	          			  }
+	          			  
+	          		  }
+	          	});
+            }
 
+            function deleteAll(){
+            	var userArray = $("input[name='selected']:checked");
+            	var array = [];
+            	for(var i=0;i<userArray.length;i++){
+            		//alert($(userArray[i]).val());
+            		array[i] = $(userArray[i]).val();
+            	}
+            	$.post('/hospital/userInfo/deleteAll',{ids:(array.join(","))},function(result){
+            		console.log(result);
+            		if (result) {
+            			$("input[name='selected']:checked").parent().parent().remove();
+            		}
+            	});
+            }
+            
+            function member_del(obj){
+            	var tr = $(obj).parent().parent();
+            	var userId = tr.find("td[name='userId']").text();
+            	$.ajax({
+	          		  type: "DELETE",
+	          		  async: false,
+	          		  url: "/hospital/userInfo/delete/"+userId,
+	          		  success: function(data){
+	          			  if(data > 0){
+	          				$(obj).parent().parent().remove();
+	          			  }
+	          		  }
+	          	});
+            }
+            
              /*用户-添加*/
             function user_management_add(title,url,w,h){
                 x_admin_show(title,url,w,h);
