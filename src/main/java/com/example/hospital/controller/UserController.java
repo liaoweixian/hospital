@@ -56,7 +56,6 @@ public class UserController {
 	@PostMapping("add")
 	@ResponseBody
     public int addUser(HttpServletRequest httpServletRequest,@ModelAttribute HospitalUserT record) {
-		System.out.println(444);
 		if(record != null) {
 			System.out.println(record);
 			record.setDataState(new Byte("1"));
@@ -88,8 +87,6 @@ public class UserController {
 	@ResponseBody
 	public int updateUser(HospitalUserT record,HttpServletRequest request) {
 		System.out.println(record);
-		/*HttpSession session = request.getSession();
-		session.getAttribute("")*/
 		HospitalUserT oldUser = hospitalUserServiceImpl.selectByPrimaryKey(record.getId());
 		oldUser.setUserLoginName(record.getUserLoginName());
 		oldUser.setUserSex(record.getUserSex());
@@ -112,10 +109,6 @@ public class UserController {
 	public List<HospitalUserT> userSearch(HospitalUserT userIdcard){
 		System.out.println(userIdcard);
 		return null;
-		/*Integer count =  hospitalUserTMapper.selectUserCount();
-		List<HospitalUserT> userList = hospitalUserServiceImpl.selectUserSearch(userName, userIdcard);*/
-		
-		//return hospitalUserServiceImpl.selectUserSearch(userName, userIdcard);
 	}
 	
 	@GetMapping("userPage/{page}/{rows}")

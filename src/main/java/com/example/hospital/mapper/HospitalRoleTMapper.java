@@ -1,6 +1,7 @@
 package com.example.hospital.mapper;
 
 import com.example.hospital.pojo.HospitalRoleT;
+
 import java.util.List;
 
 public interface HospitalRoleTMapper {
@@ -43,4 +44,10 @@ public interface HospitalRoleTMapper {
      * @mbggenerated
      */
     int updateByPrimaryKey(HospitalRoleT record);
+    
+    HospitalRoleT selectByRoleName(String RoleName);
+
+	int selectRoleCount(HospitalRoleT hospitalRoleT);
+
+	
 }
