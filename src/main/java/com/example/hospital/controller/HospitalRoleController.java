@@ -19,7 +19,7 @@ import com.example.hospital.service.HospitalRoleService;
 
 @Controller
 @RequestMapping("/role")
-public class HospitalRoleCotroller {
+public class HospitalRoleController {
 
 
 		@Autowired
