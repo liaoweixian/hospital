@@ -8,7 +8,9 @@ import com.example.hospital.mapper.HospitalRoleTMapper;
 import com.example.hospital.mapper.HospitalUserTMapper;
 import com.example.hospital.pojo.HospitalRoleT;
 import com.example.hospital.service.HospitalRoleService;
+import org.springframework.stereotype.Service;
 
+@Service
 public class HospitalRoleServiceImpl implements HospitalRoleService{
 	
 	@Autowired
