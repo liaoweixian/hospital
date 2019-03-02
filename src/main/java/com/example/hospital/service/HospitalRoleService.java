@@ -23,9 +23,9 @@ public interface HospitalRoleService {
 
 	HospitalRoleT selectIdByRoleName(Integer id, String roleName);
 	
-	 List<HospitalRoleT> selectRoleSearch(HospitalRoleT hospitalRoleT);
+	List<HospitalRoleT> selectRoleSearch(HospitalRoleT hospitalRoleT);
 	    
-	 List<HospitalRoleT> queryRolePage(int page,int rows);
+	List<HospitalRoleT> queryRolePage(int page,int rows);
 	
 	
 
