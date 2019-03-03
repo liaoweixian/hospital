@@ -22,7 +22,7 @@ import com.example.hospital.pojo.HospitalRoleT;
 import com.example.hospital.service.HospitalRoleService;
 
 @Controller
-@RequestMapping("/userInfo")
+@RequestMapping("/demo")
 public class RoleController {
 	@Autowired
 	private HospitalRoleService hospitalRoleServiceImpl;
