@@ -1,14 +1,11 @@
 package com.example.hospital.controller;
 
-import java.sql.Array;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.catalina.Host;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -16,15 +13,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestAttribute;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.hospital.mapper.HospitalUserTMapper;
-import com.example.hospital.pojo.BasePageT;
 import com.example.hospital.pojo.HospitalUserT;
 import com.example.hospital.service.HospitalUserService;
 
@@ -35,7 +29,7 @@ public class UserController {
 	@Autowired
 	private HospitalUserService hospitalUserServiceImpl;
 	
-	@Autowired
+	@Resource
 	private HospitalUserTMapper hospitalUserTMapper;
 	
 	@GetMapping("query")

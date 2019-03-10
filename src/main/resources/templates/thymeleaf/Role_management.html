@@ -13,7 +13,7 @@
 <link rel="stylesheet" th:href="@{/css/pag.css}" media="all">
 </head>
 <body>
-<div class="x-nav"> <span class="layui-breadcrumb"> <a><cite>首页</cite></a> <a><cite>角色管理</cite></a> </span> <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right"  href="javascript:location.replace(location.href);" title="刷新"><i class="layui-icon" style="line-height:30px">ဂ</i></a> </div>
+<div class="x-nav"> <span class="layui-breadcrumb"> <a><cite>首页</cite></a> <a><cite>角色管理</cite></a> </span> <a class="layui-btn layui-btn-small page_reload" style="line-height:1.6em;margin-top:3px;float:right"  href="javascript:location.replace(location.href);" title="刷新"><i class="layui-icon" style="line-height:30px">ဂ</i></a> </div>
 <div class="x-body">
 <form class="layui-form x-center" action="" style="width:85%">
   <div class="layui-form-pane">
@@ -42,8 +42,8 @@
 <div class="tools">
     <ul class="toolbar">
       <li><span><img th:src="@{/images/t03.png}" /></span>批量删除</li>
-      <li onclick="role_management_add('添加用户','role_management_add.html','900','500')"><span><img th:src="@{/images/t01.png}" /></span>添加</li>
-      <li onclick="role_management_edit('编辑','role_management_edit.html','900','500')"><span><img th:src="@{/images/t02.png}" /></span>编辑</li>
+      <li onclick="role_management_add('添加用户','/view/role_management_add','900','500')"><span><img th:src="@{/images/t01.png}" /></span>添加</li>
+      <li onclick="role_management_edit('编辑','/view/role_management_edit','900','500')"><span><img th:src="@{/images/t02.png}" /></span>编辑</li>
     </ul>
     <span class="x-right" style="line-height:25px">共有数据：88 条</span></xblock>
   </div>
@@ -60,115 +60,25 @@
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <td><input type="checkbox" value="1" name="selected"></td>
-      <td> 1 </td>
-      <td>管理员</td>
+    <tr th:each="user : ${userList}">
+      <td><input type="checkbox" th:value="${user.id}" name="selected"></td>
+      <td th:text="${user.id}" name="roleId"></td>
+      <td th:text="${user.roleName}" name="roleName"></td>
       <td>12</td>
       <td >更改权利</td>
-      <td class="td-manage"><a title="分配权限" href="javascript:;" onclick="role_management_permissions('分配权限','role_management_permissions.html','4','','510')"
-                            class="ml-5" style="text-decoration:none"> <i class="layui-icon"><img th:src="@{/images/quanxian.png}" width="15" height="15"></i> </a> <a title="查看" href="javascript:;" onclick="role_management_look('查看','role_management_look.html','4','','510')"
-                            class="ml-5" style="text-decoration:none"> <i class="layui-icon">&#xe63c;</i> </a> <a title="删除" href="javascript:;" onclick="role_del(this,'1')" 
-                            style="text-decoration:none"> <i class="layui-icon">&#xe640;</i> </a></td>
-    </tr>
-    <tr>
-      <td><input type="checkbox" value="2" name="selected"></td>
-      <td> 2</td>
-      <td>超级管理员</td>
-      <td> 123 </td>
-      <td >至高无上的权利</td>
-      <td class="td-manage"><a title="分配权限" href="javascript:;" onclick="role_management_permissions('分配权限','role_management_permissions.html','4','','510')"
-                            class="ml-5" style="text-decoration:none"> <i class="layui-icon"><img th:src="@{/images/quanxian.png}" width="15" height="15"></i> </a> <a title="查看" href="javascript:;" onclick="role_management_look('查看','role_management_look.html','4','','510')"
-                            class="ml-5" style="text-decoration:none"> <i class="layui-icon">&#xe63c;</i> </a> <a title="删除" href="javascript:;" onclick="role_del(this,'1')" 
-                            style="text-decoration:none"> <i class="layui-icon">&#xe640;</i> </a></td>
-    </tr>
-    <tr>
-      <td><input type="checkbox" value="3" name="selected"></td>
-      <td> 3</td>
-      <td>管理员 </td>
-      <td> 324</td>
-      <td >更改权利</td>
-      <td class="td-manage"><a title="分配权限" href="javascript:;" onclick="role_management_permissions('分配权限','role_management_permissions.html','4','','510')"
-                            class="ml-5" style="text-decoration:none"> <i class="layui-icon"><img th:src="@{/images/quanxian.png}" width="15" height="15"></i> </a> <a title="查看" href="javascript:;" onclick="role_management_look('查看','role_management_look.html','4','','510')"
-                            class="ml-5" style="text-decoration:none"> <i class="layui-icon">&#xe63c;</i> </a> <a title="删除" href="javascript:;" onclick="role_del(this,'1')" 
-                            style="text-decoration:none"> <i class="layui-icon">&#xe640;</i> </a></td>
-    </tr>
-    <tr>
-      <td><input type="checkbox" value="4" name="selected"></td>
-      <td> 4</td>
-      <td>超级管理员</td>
-      <td> 2 </td>
-      <td >至高无上的权利</td>
-      <td class="td-manage"><a title="分配权限" href="javascript:;" onclick="role_management_permissions('分配权限','role_management_permissions.html','4','','510')"
-                            class="ml-5" style="text-decoration:none"> <i class="layui-icon"><img th:src="@{/images/quanxian.png}" width="15" height="15"></i> </a> <a title="查看" href="javascript:;" onclick="role_management_look('查看','role_management_look.html','4','','510')"
-                            class="ml-5" style="text-decoration:none"> <i class="layui-icon">&#xe63c;</i> </a> <a title="删除" href="javascript:;" onclick="role_del(this,'1')" 
-                            style="text-decoration:none"> <i class="layui-icon">&#xe640;</i> </a></td>
-    </tr>
-    <tr>
-      <td><input type="checkbox" value="5" name="selected"></td>
-      <td> 5</td>
-      <td>超级管理员</td>
-      <td> 2</td>
-      <td >至高无上的权利</td>
-      <td class="td-manage"><a title="分配权限" href="javascript:;" onclick="role_management_permissions('分配权限','role_management_permissions.html','4','','510')"
-                            class="ml-5" style="text-decoration:none"> <i class="layui-icon"><img th:src="@{/images/quanxian.png}" width="15" height="15"></i> </a> <a title="查看" href="javascript:;" onclick="role_management_look('查看','role_management_look.html','4','','510')"
-                            class="ml-5" style="text-decoration:none"> <i class="layui-icon">&#xe63c;</i> </a> <a title="删除" href="javascript:;" onclick="role_del(this,'1')" 
-                            style="text-decoration:none"> <i class="layui-icon">&#xe640;</i> </a></td>
-    </tr>
-    <tr>
-      <td><input type="checkbox" value="6" name="selected"></td>
-      <td> 6</td>
-      <td>管理员 </td>
-      <td> 2</td>
-      <td >更改权利</td>
-      <td class="td-manage"><a title="分配权限" href="javascript:;" onclick="role_management_permissions('分配权限','role_management_permissions.html','4','','510')"
-                            class="ml-5" style="text-decoration:none"> <i class="layui-icon"><img th:src="@{/images/quanxian.png}" width="15" height="15"></i> </a> <a title="查看" href="javascript:;" onclick="role_management_look('查看','role_management_look.html','4','','510')"
-                            class="ml-5" style="text-decoration:none"> <i class="layui-icon">&#xe63c;</i> </a> <a title="删除" href="javascript:;" onclick="role_del(this,'1')" 
-                            style="text-decoration:none"> <i class="layui-icon">&#xe640;</i> </a></td>
-    </tr>
-    <tr>
-      <td><input type="checkbox" value="7" name="selected"></td>
-      <td> 7</td>
-      <td>用户</td>
-      <td> 32</td>
-      <td >浏览权利</td>
-      <td class="td-manage"><a title="分配权限" href="javascript:;" onclick="role_management_permissions('分配权限','role_management_permissions.html','4','','510')"
-                            class="ml-5" style="text-decoration:none"> <i class="layui-icon"><img th:src="@{/images/quanxian.png}" width="15" height="15"></i> </a> <a title="查看" href="javascript:;" onclick="role_management_look('查看','role_management_look.html','4','','510')"
-                            class="ml-5" style="text-decoration:none"> <i class="layui-icon">&#xe63c</i> </a> <a title="删除" href="javascript:;" onclick="role_del(this,'1')" 
-                            style="text-decoration:none"> <i class="layui-icon">&#xe640;</i> </a></td>
-    </tr>
-    <tr>
-      <td><input type="checkbox" value="8" name="selected"></td>
-      <td> 8</td>
-      <td>超级管理员</td>
-      <td> 23 </td>
-      <td >至高无上的权利</td>
-      <td class="td-manage"><a title="分配权限" href="javascript:;" onclick="role_management_permissions('分配权限','role_management_permissions.html','4','','510')"
-                            class="ml-5" style="text-decoration:none"> <i class="layui-icon"><img th:src="@{/images/quanxian.png}" width="15" height="15"></i> </a> <a title="查看" href="javascript:;" onclick="role_management_look('查看','role_management_look.html','4','','510')"
-                            class="ml-5" style="text-decoration:none"> <i class="layui-icon">&#xe63c;</i> </a> <a title="删除" href="javascript:;" onclick="role_del(this,'1')" 
-                            style="text-decoration:none"> <i class="layui-icon">&#xe640;</i> </a></td>
-    </tr>
-    <tr>
-      <td><input type="checkbox" value="9" name="selected"></td>
-      <td> 9</td>
-      <td>超级管理员</td>
-      <td> 4 </td>
-      <td >至高无上的权利</td>
-      <td class="td-manage"><a title="分配权限" href="javascript:;" onclick="role_management_permissions('分配权限','role_management_permissions.html','4','','510')"
-                            class="ml-5" style="text-decoration:none"> <i class="layui-icon"><img th:src="@{/images/quanxian.png}" width="15" height="15"></i> </a> <a title="查看" href="javascript:;" onclick="role_management_look('查看','role_management_look.html','4','','510')"
-                            class="ml-5" style="text-decoration:none"> <i class="layui-icon">&#xe63c;</i> </a> <a title="删除" href="javascript:;" onclick="role_del(this,'1')" 
-                            style="text-decoration:none"> <i class="layui-icon">&#xe640;</i> </a></td>
-    </tr>
-    <tr>
-      <td><input type="checkbox" value="10" name="selected"></td>
-      <td> 10</td>
-      <td>超级管理员</td>
-      <td> 5 </td>
-      <td >至高无上的权利</td>
-      <td class="td-manage"><a title="分配权限" href="javascript:;" onclick="role_management_permissions('分配权限','role_management_permissions.html','4','','510')"
-                            class="ml-5" style="text-decoration:none"> <i class="layui-icon"><img th:src="@{/images/quanxian.png}" width="15" height="15"></i> </a> <a title="查看" href="javascript:;" onclick="role_management_look('查看','role_management_look.html','4','','510')"
-                            class="ml-5" style="text-decoration:none"> <i class="layui-icon">&#xe63c;</i> </a> <a title="删除" href="javascript:;" onclick="role_del(this,'1')" 
-                            style="text-decoration:none"> <i class="layui-icon">&#xe640;</i> </a></td>
+      <td class="td-manage">
+	     <a title="分配权限" href="javascript:;" onclick="role_management_permissions('分配权限','role_management_permissions.html','4','','510')"  class="ml-5" style="text-decoration:none"> <i class="layui-icon">
+	      <img th:src="@{/images/quanxian.png}" width="15" height="15"></i> 
+	     </a>
+	    <!--  <a title="查看" href="javascript:;" onclick="role_management_look('查看','role_management_look.html','4','','510')" class="ml-5" style="text-decoration:none"> 
+	      	<i class="layui-icon">&#xe63c;</i> 
+	      </a>  -->
+	       <a title="编辑" href="javascript:;" th:attr="target_id=${user.id}" onclick="role_management_edit('编辑','/role/role/role_management_edit','4','','510',this)"class="ml-5" style="text-decoration:none">
+           <i class="layui-icon">&#xe642;</i>
+           </a>
+	      <a title="删除" href="javascript:;" onclick="role_del(this)" style="text-decoration:none"> <i class="layui-icon">&#xe640;</i>
+	       </a>
+       </td>
     </tr>
   </tbody>
 </table>
@@ -184,7 +94,8 @@
 <script th:src="@{/lib/layui/layui.js}" charset="utf-8"></script> 
 <script th:src="@{/js/x-layui.js}" charset="utf-8"></script> 
 <script th:src="@{/js/jquery2.js}" charset="utf-8"></script> 
-<script th:src="@{/js/js.js}" charset="utf-8"></script> 
+<script th:src="@{/js/js.js}" charset="utf-8"></script>
+<script th:src="@{/js/public.js}" charset="utf-8"></script> 
 <script>
             layui.use(['laydate','element','laypage','layer'], function(){
                 $ = layui.jquery;//jquery
@@ -198,19 +109,31 @@
             function role_management_add(title,url,w,h){
                 x_admin_show(title,url,w,h);
             }
-
-             
             //修改密码
             function role_management_permissions (title,url,id,w,h) {
                 x_admin_show(title,url,w,h); 
             }
-			//查看
-            function role_management_look (title,url,id,w,h) {
-                x_admin_show(title,url,w,h); 
+            //编辑
+            function role_management_edit (title,url,id,w,h,target) {
+                url += "/"+$(target).attr('target_id');
+                x_admin_show(title,url,w,h);
             }
-			//编辑
-            function role_management_edit (title,url,w,h) {
-                x_admin_show(title,url,w,h); 
+            //删 除
+            function role_del(obj){
+            	var tr = $(obj).parent().parent();
+            	var userId = tr.find("td[name='roleId']").text();
+            	var index = layer.alert("您确定改角色吗？", {icon: 6},function () {
+                    // 获得frame索引
+  	                layer.close(index);
+                    $.ajax({
+  	          		  type: "DELETE",
+  	          		  async: false,
+  	          		  url: "/hospital/role/delete/"+userId,
+  	          		  success: function(data){
+  	          			 location.reload(); 
+  	          		  }
+  	          		});
+                });
             }
 	$('.tablelist tbody tr:odd').addClass('odd');
             </script>

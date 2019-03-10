@@ -12,6 +12,7 @@
 
 var host = "/hospital"
 
+	
 // left.html 的切换节点  JS
 $(function(){
 	// 点击展开事件，切换图片

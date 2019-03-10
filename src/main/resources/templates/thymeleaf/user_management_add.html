@@ -2,17 +2,16 @@
 <html>
     <script>
     function insert() {
-    	            $.ajax({
-    	                type: "POST",//方法
-    	                url: "/hospital/userInfo/add", 
-    	              //表单接收url
-    	                data: $('#form1').serialize(),
-    	                success: function () {
-    	                 alert("添加成功") 
-    	                }
-    	            });
-    	        }
-    	    </script>
+            $.ajax({
+                type: "POST",//方法
+                url: "/hospital/demo/add", 
+                data: $('#form1').serialize(),
+                success: function () {
+                 alert("添加成功") 
+                }
+            });
+    }
+    </script>
     <head>
         <meta charset="utf-8">
         <title>

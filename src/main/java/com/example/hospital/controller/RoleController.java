@@ -3,6 +3,7 @@ package com.example.hospital.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,28 +23,18 @@ import com.example.hospital.pojo.HospitalRoleT;
 import com.example.hospital.service.HospitalRoleService;
 
 @Controller
-@RequestMapping("/demo")
+@RequestMapping("/role")
 public class RoleController {
 	@Autowired
 	private HospitalRoleService hospitalRoleServiceImpl;
 	
-	@Autowired
+	@Resource
 	private HospitalRoleTMapper hospitalRoleTMapper;
 	
 	@GetMapping("query")
-	public ModelAndView queryRole(HospitalRoleT hospitalRoleT) {
+	public ModelAndView queryRole() {
 		ModelAndView view = new ModelAndView();
-		List<HospitalRoleT> userList = hospitalRoleServiceImpl.selectRoleSearch(hospitalRoleT);
-		
-		//查询角色的数量
-		/**
-		 * hospitalRoleTMapper.setNumberPageCount(hospitalRoleTMapper.selectRoleCount(hospitalRoleT));
-		 */
-		
-		System.out.println(hospitalRoleTMapper.selectRoleCount(hospitalRoleT));
-		//System.out.println(hospitalRoleT.getNumberPageCount());
-		view.addObject("userList", userList);
-		view.addObject("search",hospitalRoleT);
+		view.addObject("userList", hospitalRoleServiceImpl.selectAll());
 		view.setViewName("Role_management");
 		return view;
 	}
@@ -51,64 +42,50 @@ public class RoleController {
 	@PostMapping("add")
 	@ResponseBody
     public int addUser(HttpServletRequest httpServletRequest,@ModelAttribute HospitalRoleT record) {
-		if(record != null) {
-			System.out.println(record);
-			record.setDataState(new Byte("1"));
-			hospitalRoleServiceImpl.insert(record);
-		}
-		return 0;
+		record.setDataState(new Byte("1"));
+		return hospitalRoleServiceImpl.insert(record);
 	}
 	
 	@DeleteMapping("delete/{id}")
 	@ResponseBody
-    public int deleteUser(@PathVariable("id") Integer userId) {
-		return hospitalRoleServiceImpl.deleteByPrimaryKey(userId);
+    public int delete(@PathVariable("id") Integer userId) {
+		return hospitalRoleTMapper.deleteByPrimaryKey(userId);
 	}
 	
 	@PostMapping("deleteAll")
 	@ResponseBody
-    public int deleteUser(@RequestParam(value = "ids") String ids) {
+    public int deleteUser(@RequestParam(value = "ids") String ids)
+	{
 		List<Integer> list = new ArrayList<Integer>() ;
-		String string[]  = ids.split(",");
-		System.out.println(string.length);
-		for (int i = 0; i < string.length; i++) {
-			
-			list.add(Integer.parseInt(string[i]));
+		String strArray[]  = ids.split(",");
+		for (String str: strArray) {
+			list.add(Integer.parseInt(str));
 		}
 		return hospitalRoleServiceImpl.deleteByPrimaryKeys(list);
 	}
 	
 	@RequestMapping("update")
 	@ResponseBody
-	public int updateUser(HospitalRoleT record,HttpServletRequest request) {
-		System.out.println(record);
-		/*HttpSession session = request.getSession();
-		session.getAttribute("")*/
-		HospitalRoleT oldUser = hospitalRoleServiceImpl.selectByPrimaryKey(record.getId());
-		oldUser.setRoleName(record.getRoleName());
-		return hospitalRoleServiceImpl.updateByPrimaryKey(oldUser);
-		
+	public int update(HospitalRoleT record,HttpServletRequest request) {
+		HospitalRoleT oldRole = hospitalRoleTMapper.selectByPrimaryKey(record.getId());
+		oldRole.setRoleName(record.getRoleName());
+		return hospitalRoleTMapper.updateByPrimaryKey(oldRole);
 	}
 
 	@RequestMapping("role/{target_page}/{id}")
-	public ModelAndView getRole(@PathVariable("target_page") String target_page,@PathVariable("id") String id,ModelAndView view)
+	public ModelAndView getRole(@PathVariable("target_page") String target_page,@PathVariable("id") Integer id,ModelAndView view)
 	{
-		HospitalRoleT userInfo = hospitalRoleServiceImpl.selectByPrimaryKey(Integer.parseInt(id));
-		view.addObject("userInfo", userInfo);
+		HospitalRoleT roleInfo =  hospitalRoleTMapper.selectByPrimaryKey(id);
+		view.addObject("roleInfo", roleInfo);
 		view.setViewName(target_page);
 		return view;
 	}
 	
-	//@RequestParam(name="userName",required=false) String userName,@RequestParam(name="userIdcard",required=false) String userIdcard,@RequestParam(name="page",defaultValue="0") String page
 	@GetMapping("userSearch")
 	@ResponseBody
 	public List<HospitalRoleT> userSearch(HospitalRoleT userIdcard){
 		System.out.println(userIdcard);
 		return null;
-		/*Integer count =  hospitalUserTMapper.selectUserCount();
-		List<HospitalUserT> userList = hospitalUserServiceImpl.selectUserSearch(userName, userIdcard);*/
-		
-		//return hospitalUserServiceImpl.selectUserSearch(userName, userIdcard);
 	}
 	
 	@GetMapping("userPage/{page}/{rows}")

@@ -3,12 +3,11 @@ package com.example.hospital.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.example.hospital.mapper.HospitalRoleTMapper;
-import com.example.hospital.mapper.HospitalUserTMapper;
 import com.example.hospital.pojo.HospitalRoleT;
 import com.example.hospital.service.HospitalRoleService;
-import org.springframework.stereotype.Service;
 
 @Service
 public class HospitalRoleServiceImpl implements HospitalRoleService{
@@ -24,15 +23,8 @@ public class HospitalRoleServiceImpl implements HospitalRoleService{
 
 	@Override
 	public int insert(HospitalRoleT record) {
-		//判断用户是否已经被使用过
-				String roleName = record.getRoleName();
-				HospitalRoleT role = hospitalRoleTMapper.selectByRoleName(roleName);
-				if(role == null) {
-					record.setDataState(new Byte("1"));
-					return hospitalRoleTMapper.insert(record);
-				}
-				return 0;
-			}
+		return hospitalRoleTMapper.insert(record);
+	}
 
 	
 	@Override
@@ -43,8 +35,7 @@ public class HospitalRoleServiceImpl implements HospitalRoleService{
 
 	@Override
 	public List<HospitalRoleT> selectAll() {
-		// TODO Auto-generated method stub
-		return null;
+		return hospitalRoleTMapper.selectAll();
 	}
 
 	@Override
