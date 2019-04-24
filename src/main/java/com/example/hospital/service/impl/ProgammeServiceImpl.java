@@ -3,9 +3,13 @@ package com.example.hospital.service.impl;
 import com.example.hospital.mapper.HospitalProgammeTMapper;
 import com.example.hospital.pojo.HospitalProgammeT;
 import com.example.hospital.service.ProgammeService;
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @Service
 public class ProgammeServiceImpl implements ProgammeService
@@ -36,5 +40,14 @@ public class ProgammeServiceImpl implements ProgammeService
     public HospitalProgammeT selectByPrimaryKey(Integer id)
     {
         return hospitalProgammeTMapper.selectByPrimaryKey(id);
+    }
+
+    @Override
+    public PageInfo<HospitalProgammeT> selectAll(Integer page, Integer pageSize)
+    {
+        Page<Object> objects = PageHelper.startPage(page, pageSize, true);
+        List<HospitalProgammeT> hospitalProgammeTS = hospitalProgammeTMapper.selectAll();
+        PageInfo<HospitalProgammeT> pageInfo = new PageInfo<>(hospitalProgammeTS);
+        return pageInfo;
     }
 }

@@ -8,10 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Map;
 
@@ -69,4 +67,21 @@ public class ProgammeController
         int result = progammeServiceImpl.deleteById(hospitalProgammeT);
         return ResponeUtils.result(ConstantDefault.RESULT_SUCCESS, "删除成功", HttpStatus.OK);
     }
+
+
+    @RequestMapping(value = "/progammePage")
+    public ModelAndView progammePage(@RequestParam("page") Integer page,
+                                     @RequestParam("pageSize") Integer pageSize,
+                                     @ModelAttribute  HospitalProgammeT progammeT)
+    {
+        if (pageSize == null || pageSize == 0)
+        {
+            pageSize = 10;
+        }
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("pageInfo",progammeServiceImpl.selectAll(page,pageSize));
+        modelAndView.setViewName("progamme");
+        return modelAndView;
+    }
+
 }
