@@ -35,12 +35,8 @@ public class UserController {
 	@GetMapping("query")
 	public ModelAndView queryUser(HospitalUserT hospitalUserT) {
 		ModelAndView view = new ModelAndView();
-		System.out.println(hospitalUserT.getUserIdcard());
-		System.out.println(hospitalUserT.getUserName());
 		List<HospitalUserT> userList = hospitalUserServiceImpl.selectUserSearch(hospitalUserT);
 		hospitalUserT.setNumberPageCount(hospitalUserTMapper.selectUserCount(hospitalUserT));
-		System.out.println(hospitalUserTMapper.selectUserCount(hospitalUserT));
-		System.out.println(hospitalUserT.getNumberPageCount());
 		view.addObject("userList", userList);
 		view.addObject("search",hospitalUserT);
 		view.setViewName("User_management");

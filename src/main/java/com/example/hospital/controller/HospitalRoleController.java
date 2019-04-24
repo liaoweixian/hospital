@@ -48,7 +48,6 @@ public class HospitalRoleController {
 			}
 			else
 			{
-				System.out.println("------------------------------");
 				role = hospitalRoleServiceImpl.selectByRoleName(roleName);
 			}
 			if(role != null) {
